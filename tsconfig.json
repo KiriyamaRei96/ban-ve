@@ -18,7 +18,7 @@
     "jsx": "react-jsx",
     "baseUrl": "./src"
   },
-  "include": ["src", "internals/startingTemplate/**/*", "public/fonts"],
+  "include": ["src", "internals/startingTemplate/**/*", "src/fonts"],
   "ts-node": {
     "compilerOptions": {
       "esModuleInterop": true,

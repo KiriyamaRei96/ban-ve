@@ -1,6 +1,47 @@
 import { createGlobalStyle } from 'styled-components';
 
 import { StyleConstants } from './StyleConstants';
+import sunWorldBold from '../fonts/SunWorld-Bold.eot';
+import sunWorldBold2 from '../fonts/SunWorld-Bold.eot?#iefix';
+import sunWorldBold3 from '../fonts/SunWorld-Bold.woff2';
+import sunWorldBold4 from '../fonts/SunWorld-Bold.woff';
+import sunWorldBold5 from '../fonts/SunWorld-Bold.ttf';
+import sunWorldBold6 from '../fonts/SunWorld-Bold.svg';
+
+import sunWorldLightOblique from '../fonts/SunWorld-LightOblique.eot';
+import sunWorldLightOblique2 from '../fonts/SunWorld-LightOblique.eot?#iefix';
+import sunWorldLightOblique3 from '../fonts/SunWorld-LightOblique.woff2';
+import sunWorldLightOblique4 from '../fonts/SunWorld-LightOblique.woff';
+import sunWorldLightOblique5 from '../fonts/SunWorld-LightOblique.ttf';
+import sunWorldLightOblique6 from '../fonts/SunWorld-LightOblique.svg';
+
+import sunWorldRegular from '../fonts/SunWorld-Regular.eot';
+import sunWorldRegular2 from '../fonts/SunWorld-Regular.eot?#iefix';
+import sunWorldRegular3 from '../fonts/SunWorld-Regular.woff2';
+import sunWorldRegular4 from '../fonts/SunWorld-Regular.woff';
+import sunWorldRegular5 from '../fonts/SunWorld-Regular.ttf';
+import sunWorldRegular6 from '../fonts/SunWorld-Regular.svg';
+
+import sunWorldOblique from '../fonts/SunWorld-Oblique.eot';
+import sunWorldOblique2 from '../fonts/SunWorld-Oblique.eot?#iefix';
+import sunWorldOblique3 from '../fonts/SunWorld-Oblique.woff2';
+import sunWorldOblique4 from '../fonts/SunWorld-Oblique.woff';
+import sunWorldOblique5 from '../fonts/SunWorld-Oblique.ttf';
+import sunWorldOblique6 from '../fonts/SunWorld-Oblique.svg';
+
+import sunWorldLight from '../fonts/SunWorld-Light.eot';
+import sunWorldLight2 from '../fonts/SunWorld-Light.eot?#iefix';
+import sunWorldLight3 from '../fonts/SunWorld-Light.woff2';
+import sunWorldLight4 from '../fonts/SunWorld-Light.woff';
+import sunWorldLight5 from '../fonts/SunWorld-Light.ttf';
+import sunWorldLight6 from '../fonts/SunWorld-Light.svg';
+
+import sunWorldHeavy from '../fonts/SunWorld-Heavy.eot';
+import sunWorldHeavy2 from '../fonts/SunWorld-Heavy.eot?#iefix';
+import sunWorldHeavy3 from '../fonts/SunWorld-Heavy.woff2';
+import sunWorldHeavy4 from '../fonts/SunWorld-Heavy.woff';
+import sunWorldHeavy5 from '../fonts/SunWorld-Heavy.ttf';
+import sunWorldHeavy6 from '../fonts/SunWorld-Heavy.svg';
 
 export const GlobalStyle = createGlobalStyle`
 /* html,
@@ -37,12 +78,12 @@ export const GlobalStyle = createGlobalStyle`
 
 @font-face {
     font-family: 'Sun World regular';
-    src: url('../../public/fonts/SunWorld-Regular.eot');
-    src: url('../../public/fonts/SunWorld-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../../public/fonts/SunWorld-Regular.woff2') format('woff2'),
-        url('../../public/fonts/SunWorld-Regular.woff') format('woff'),
-        url('../../public/fonts/SunWorld-Regular.ttf') format('truetype'),
-        url('../../public/fonts/SunWorld-Regular.svg#SunWorld-Regular') format('svg');
+    src: url(${sunWorldRegular});
+    src: url(${sunWorldRegular2}) format('embedded-opentype'),
+        url(${sunWorldRegular3}) format('woff2'),
+        url(${sunWorldRegular4}) format('woff'),
+        url(${sunWorldRegular5}) format('truetype'),
+        url(${sunWorldRegular6}) format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -50,12 +91,12 @@ export const GlobalStyle = createGlobalStyle`
 
 @font-face {
     font-family: 'Sun World Oblique';
-    src: url('../../public/fonts/SunWorld-Oblique.eot');
-    src: url('../../public/fonts/SunWorld-Oblique.eot?#iefix') format('embedded-opentype'),
-        url('../../public/fonts/SunWorld-Oblique.woff2') format('woff2'),
-        url('../../public/fonts/SunWorld-Oblique.woff') format('woff'),
-        url('unWorld-Oblique.ttf') format('truetype'),
-        url('../../public/fonts/SunWorld-Oblique.svg#SunWorld-Oblique') format('svg');
+    src: url( ${sunWorldOblique});
+    src: url( ${sunWorldOblique2}) format('embedded-opentype'),
+        url( ${sunWorldOblique3}) format('woff2'),
+        url( ${sunWorldOblique4}) format('woff'),
+        url( ${sunWorldOblique5}) format('truetype'),
+        url( ${sunWorldOblique6}) format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -63,12 +104,12 @@ export const GlobalStyle = createGlobalStyle`
 
 @font-face {
     font-family: 'Sun World LightOblique';
-    src: url('../../public/fonts/SunWorld-LightOblique.eot');
-    src: url('../../public/fonts/SunWorld-LightOblique.eot?#iefix') format('embedded-opentype'),
-        url('../../public/fonts/SunWorld-LightOblique.woff2') format('woff2'),
-        url('../../public/fonts/SunWorld-LightOblique.woff') format('woff'),
-        url('../../public/fonts/SunWorld-LightOblique.ttf') format('truetype'),
-        url('../../public/fonts/SunWorld-LightOblique.svg#SunWorld-LightOblique') format('svg');
+    src: url(${sunWorldLightOblique});
+    src: url(${sunWorldLightOblique2}) format('embedded-opentype'),
+        url(${sunWorldLightOblique3}) format('woff2'),
+        url(${sunWorldLightOblique4}) format('woff'),
+        url(${sunWorldLightOblique5}) format('truetype'),
+        url(${sunWorldLightOblique6}) format('svg');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -76,12 +117,12 @@ export const GlobalStyle = createGlobalStyle`
 
 @font-face {
     font-family: 'Sun World bold';
-    src: url('../../public/fonts/SunWorld-Bold.eot');
-    src: url('../../public/fonts/SunWorld-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../../public/fonts/SunWorld-Bold.woff2') format('woff2'),
-        url('../../public/fonts/SunWorld-Bold.woff') format('woff'),
-        url('../../public/fonts/SunWorld-Bold.ttf') format('truetype'),
-        url('../../public/fonts/SunWorld-Bold.svg#SunWorld-Bold') format('svg');
+    src: url(${sunWorldBold});
+    src: url(${sunWorldBold2}) format('embedded-opentype'),
+        url(${sunWorldBold3}) format('woff2'),
+        url(${sunWorldBold4}) format('woff'),
+        url(${sunWorldBold5}) format('truetype'),
+        url(${sunWorldBold6}) format('svg');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -89,12 +130,12 @@ export const GlobalStyle = createGlobalStyle`
 
 @font-face {
     font-family: 'Sun World light';
-    src: url('../../public/fonts/SunWorld-Light.eot');
-    src: url('../../public/fonts/SunWorld-Light.eot?#iefix') format('embedded-opentype'),
-        url('../../public/fonts/SunWorld-Light.woff2') format('woff2'),
-        url('../../public/fonts/SunWorld-Light.woff') format('woff'),
-        url('../../public/fonts/SunWorld-Light.ttf') format('truetype'),
-        url('../../public/fonts/SunWorld-Light.svg#SunWorld-Light') format('svg');
+    src: url( ${sunWorldLight});
+    src: url( ${sunWorldLight2}) format('embedded-opentype'),
+        url( ${sunWorldLight3}) format('woff2'),
+        url( ${sunWorldLight4}) format('woff'),
+        url( ${sunWorldLight5}) format('truetype'),
+        url( ${sunWorldLight6}) format('svg');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -102,12 +143,12 @@ export const GlobalStyle = createGlobalStyle`
 
 @font-face {
     font-family: 'Sun World heavy';
-    src: url('../../public/fonts/SunWorld-Heavy.eot');
-    src: url('../../public/fonts/SunWorld-Heavy.eot?#iefix') format('embedded-opentype'),
-        url('../../public/fonts/SunWorld-Heavy.woff2') format('woff2'),
-        url('../../public/fonts/SunWorld-Heavy.woff') format('woff'),
-        url('../../public/fonts/SunWorld-Heavy.ttf') format('truetype'),
-        url('../../public/fonts/SunWorld-Heavy.svg#SunWorld-Heavy') format('svg');
+    src: url(${sunWorldHeavy});
+    src: url(${sunWorldHeavy2}) format('embedded-opentype'),
+        url(${sunWorldHeavy3}) format('woff2'),
+        url(${sunWorldHeavy4}) format('woff'),
+        url(${sunWorldHeavy5}) format('truetype'),
+        url(${sunWorldHeavy6}) format('svg');
     font-weight: 900;
     font-style: normal;
     font-display: swap;

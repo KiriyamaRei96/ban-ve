@@ -1,3 +1,4 @@
+import { bg, logo1 } from 'asset/export';
 import * as React from 'react';
 import LoginWrapper from './styled';
 
@@ -8,11 +9,11 @@ export function Login(props: LoginProps) {
     <LoginWrapper>
       <div className="login">
         <div className="background-login">
-          <img src="../img/bg.png" alt="" />
+          <img src={bg} alt="" />
         </div>
         <div className="card-login">
           <div className="logo d-flex justify-content-center">
-            <img src="../img/logo-1.png" alt="" />
+            <img src={logo1} alt="" />
           </div>
           <div className="language my-4">
             <span className="--item active">Tiếng Việt</span>

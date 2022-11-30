@@ -13,12 +13,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { GlobalStyle } from 'styles/global-styles';
 
-import { HomePage } from '../HomePage/Loadable';
-
 import { useTranslation } from 'react-i18next';
-import { NotFoundPage } from '../NotFoundPage/Loadable';
+
 import { Login } from '../Login';
-const islogin = false;
+import Home from '../Home';
+const islogin = true;
 export function App() {
   const { i18n } = useTranslation();
   return (
@@ -32,10 +31,8 @@ export function App() {
       </Helmet>
 
       <Routes>
-        {islogin && <Route path="/" element={<HomePage />} />}
+        {islogin && <Route path="/" element={<Home />} />}
         {!islogin && <Route path="/" element={<Login />} />}
-
-        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <GlobalStyle />
     </BrowserRouter>
