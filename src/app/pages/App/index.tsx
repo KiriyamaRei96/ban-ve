@@ -15,8 +15,15 @@ import { GlobalStyle } from 'styles/global-styles';
 
 import { useTranslation } from 'react-i18next';
 
-import { Login } from '../Login';
-import Home from '../Home';
+import { Booking } from '../Booking/Loadable';
+import { Home } from '../Home/Loadable';
+import { Login } from '../Login/Loadable';
+import { History } from '../History/Loadable';
+
+import { CheckOut } from '../CheckOut/Loadable';
+import { Historydetail } from '../History/detail/Loadable';
+import { Account } from '../Account/Loadable';
+import { PaymentCallback } from '../PaymentCallback/Loadable';
 const islogin = true;
 export function App() {
   const { i18n } = useTranslation();
@@ -31,7 +38,16 @@ export function App() {
       </Helmet>
 
       <Routes>
-        {islogin && <Route path="/" element={<Home />} />}
+        {islogin && (
+          <Route path="/" element={<Home />}>
+            <Route index element={<Booking />}></Route>
+            <Route path="History" element={<History />}></Route>
+            <Route path="History/:id" element={<Historydetail />}></Route>
+            <Route path="PaymentCallback" element={<PaymentCallback />}></Route>
+            <Route path="Account" element={<Account />}></Route>
+            <Route path="CheckOut" element={<CheckOut />}></Route>
+          </Route>
+        )}
         {!islogin && <Route path="/" element={<Login />} />}
       </Routes>
       <GlobalStyle />
