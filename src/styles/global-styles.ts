@@ -1311,7 +1311,7 @@ a {
                         border-radius: 4px;
                         height: 44px;
                         padding: 0 12px;
-
+                        width: 100%;
                         &::placeholder {
                             color: #B1B1B1;
                         }
@@ -1331,6 +1331,7 @@ a {
                         border-radius: 4px;
                         height: 44px;
                         padding: 0 12px;
+                        width: 100%;
 
                         &::placeholder {
                             color: #B1B1B1;

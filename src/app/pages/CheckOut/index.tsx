@@ -36,25 +36,36 @@ export function CheckOut(props: CheckOutProps) {
 
                   <div className="form-group d-flex flex-column">
                     <label htmlFor="tourGuideName">Tour Guide Name</label>
-                    <input name="tourGuideName" type="text" />
+                    <Form.Item name="tourGuideName">
+                      <input name="tourGuideName" type="text" />
+                    </Form.Item>
                   </div>
                   <div className="form-group d-flex flex-column">
                     <label htmlFor="">Tour Guide Mobile</label>
-                    <input name="tourGuideMobile" type="text" />
+                    <Form.Item name="tourGuideMobile">
+                      <input type="text" />
+                    </Form.Item>
                   </div>
                   <div className="form-group d-flex flex-column">
                     <label htmlFor="">Group Code</label>
-                    <input name="tourGroupCode" type="text" />
+                    <Form.Item name="tourGroupCode">
+                      <input type="text" />
+                    </Form.Item>
                   </div>
                   <div className="form-group d-flex flex-column">
                     <label htmlFor="">Nationality</label>
-                    <select name="tourNation" id="">
-                      <option value="">Select option</option>
-                    </select>
+                    <Form.Item name="tourNation">
+                      <select id="">
+                        <option value="">Select option</option>
+                        <option value="1">Select option2</option>
+                      </select>
+                    </Form.Item>
                   </div>
                   <div className="form-group d-flex flex-column">
-                    <label htmlFor="tourNotes">Note</label>
-                    <input type="text" />
+                    <label>Note</label>
+                    <Form.Item name="tourNotes">
+                      <input type="text" />
+                    </Form.Item>
                   </div>
                 </Form>
               </div>
