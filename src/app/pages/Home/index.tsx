@@ -2,6 +2,10 @@ import React from 'react';
 import Header from './component/Header';
 import Left from './component/Left';
 import { Outlet } from 'react-router-dom';
+import { getCookie } from 'utils/cookies';
+import { sunWorldToken } from 'utils/types/const';
+import QueryString from 'qs';
+
 export interface HomeProps {}
 
 export const Home = (props: HomeProps) => {

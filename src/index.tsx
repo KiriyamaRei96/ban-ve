@@ -38,7 +38,7 @@ openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 });
 
-const store = configureAppStore();
+export const store = configureAppStore();
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );

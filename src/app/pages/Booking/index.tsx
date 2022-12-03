@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import {
   bg,
   calendar1,
@@ -9,9 +10,13 @@ import {
   search3,
   sent,
 } from 'asset/export';
-export interface BookingProps {}
+import { notify } from 'reapop';
+import { store } from 'index';
 
+export interface BookingProps {}
 export function Booking(props: BookingProps) {
+  const dispatch = useDispatch();
+
   return (
     <div className="--content">
       <div className="booking d-flex ">
