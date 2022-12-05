@@ -906,7 +906,32 @@ a {
                 height: 100%;
             }
 
-            .calendar {}
+            .calendar {
+                .react-datepicker {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                    font-family: var(--font-body);
+                    border: none;
+                    width: 100%;
+                    display: flex;
+                    height: 288px;
+                    color: #8A8A8A;
+
+                }
+
+                .react-datepicker__current-month {
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #1F1F1F;
+
+                }
+
+                .react-datepicker__month-container {
+                    width: 100%;
+                }
+            }
 
             .name-tab {
                 height: 65px;
