@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   bg,
@@ -10,17 +10,17 @@ import {
   search3,
   sent,
 } from 'asset/export';
-import { notify } from 'reapop';
-import { store } from 'index';
+import BookingDate from './BookingDate';
 
 export interface BookingProps {}
 export function Booking(props: BookingProps) {
-  const dispatch = useDispatch();
+  const [startDate, setStartDate] = useState(new Date());
 
+  const dispatch = useDispatch();
   return (
     <div className="--content">
       <div className="booking d-flex ">
-        <div className="--item">
+        <div className="--item d-flex flex-column">
           <div className="name-tab d-flex align-items-center">
             <div className="--icon">
               <img src={calendar1.default} alt="" />
@@ -38,13 +38,17 @@ export function Booking(props: BookingProps) {
                 <i className="fa-solid fa-chevron-right"></i>
               </div>
             </div>
-            <div className="calendar"></div>
+            <div className="calendar">
+              <BookingDate startDate={startDate} setStartDate={setStartDate} />
+            </div>
           </div>
         </div>
         <div className="--item">
           <div className="name-tab d-flex align-items-center">
-            <div className="--item-tab --link fw-bold active">PARK TICKETS</div>
-            <div className="--item-tab --link fw-bold">SIGNATURE SHOW</div>
+            <div className="--item-tab --link fw-bold ">PARK TICKETS</div>
+            <div className="--item-tab --link fw-bold active">
+              SIGNATURE SHOW
+            </div>
           </div>
           <div className="tab-content">
             <div className="--item-content">

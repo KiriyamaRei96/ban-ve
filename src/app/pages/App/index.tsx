@@ -6,7 +6,7 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import * as React from 'react';
+import React, { useEffect } from 'react';
 // eslint-disable @typescript-eslint/no-unused-vars
 import { Helmet } from 'react-helmet-async';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -28,10 +28,10 @@ import { CheckOut } from '../CheckOut/Loadable';
 import { Historydetail } from '../History/detail/Loadable';
 import { Account } from '../Account/Loadable';
 import { PaymentCallback } from '../PaymentCallback/Loadable';
-import { useAppSlice } from './slice';
+import { GET_USER_INFO, useAppSlice } from './slice';
 import { auth } from 'utils/helper';
 import { ProtectedRoute } from './component/ProtectedRoute';
-import { selectNotifications } from './slice/selector';
+import { isLogged, selectNotifications } from './slice/selector';
 import { useDispatch, useSelector } from 'react-redux';
 setUpNotifications({
   defaultProps: {
@@ -43,12 +43,23 @@ setUpNotifications({
     showDismissButton: true,
   },
 });
-const islogin = true;
 export function App() {
   const { i18n } = useTranslation();
   const { actions } = useAppSlice();
+  const isloged = useSelector(isLogged);
   const notifications = useSelector(selectNotifications);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (auth()) {
+      dispatch(actions.loginSuccesses());
+    }
+  }, [actions, dispatch]);
+  useEffect(() => {
+    if (isloged) {
+      dispatch(GET_USER_INFO());
+    }
+  }, [isloged]);
   return (
     <BrowserRouter>
       <Helmet
@@ -63,7 +74,7 @@ export function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute auth={!auth()} navigate={'/Login'}>
+            <ProtectedRoute auth={auth()} navigate={'/Login'}>
               <Home />
             </ProtectedRoute>
           }
@@ -78,7 +89,7 @@ export function App() {
         <Route
           path="/Login"
           element={
-            <ProtectedRoute auth={auth()} navigate={'/'}>
+            <ProtectedRoute auth={!auth()} navigate={'/'}>
               <Login />
             </ProtectedRoute>
           }

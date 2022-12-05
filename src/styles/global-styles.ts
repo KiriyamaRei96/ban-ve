@@ -1,6 +1,14 @@
-import { createGlobalStyle } from 'styled-components';
+import {
+    createGlobalStyle
+}
 
-import { StyleConstants } from './StyleConstants';
+from 'styled-components';
+
+import {
+    StyleConstants
+}
+
+from './StyleConstants';
 import sunWorldBold from '../fonts/SunWorld-Bold.eot';
 import sunWorldBold2 from '../fonts/SunWorld-Bold.eot?#iefix';
 import sunWorldBold3 from '../fonts/SunWorld-Bold.woff2';
@@ -43,7 +51,7 @@ import sunWorldHeavy4 from '../fonts/SunWorld-Heavy.woff';
 import sunWorldHeavy5 from '../fonts/SunWorld-Heavy.ttf';
 import sunWorldHeavy6 from '../fonts/SunWorld-Heavy.svg';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle=createGlobalStyle`
 /* html,
   body {
     height: 100%;
@@ -80,10 +88,10 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Sun World regular';
     src: url(${sunWorldRegular});
     src: url(${sunWorldRegular2}) format('embedded-opentype'),
-        url(${sunWorldRegular3}) format('woff2'),
-        url(${sunWorldRegular4}) format('woff'),
-        url(${sunWorldRegular5}) format('truetype'),
-        url(${sunWorldRegular6}) format('svg');
+    url(${sunWorldRegular3}) format('woff2'),
+    url(${sunWorldRegular4}) format('woff'),
+    url(${sunWorldRegular5}) format('truetype'),
+    url(${sunWorldRegular6}) format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -91,12 +99,12 @@ export const GlobalStyle = createGlobalStyle`
 
 @font-face {
     font-family: 'Sun World Oblique';
-    src: url( ${sunWorldOblique});
-    src: url( ${sunWorldOblique2}) format('embedded-opentype'),
-        url( ${sunWorldOblique3}) format('woff2'),
-        url( ${sunWorldOblique4}) format('woff'),
-        url( ${sunWorldOblique5}) format('truetype'),
-        url( ${sunWorldOblique6}) format('svg');
+    src: url(${sunWorldOblique});
+    src: url(${sunWorldOblique2}) format('embedded-opentype'),
+    url(${sunWorldOblique3}) format('woff2'),
+    url(${sunWorldOblique4}) format('woff'),
+    url(${sunWorldOblique5}) format('truetype'),
+    url(${sunWorldOblique6}) format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -106,10 +114,10 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Sun World LightOblique';
     src: url(${sunWorldLightOblique});
     src: url(${sunWorldLightOblique2}) format('embedded-opentype'),
-        url(${sunWorldLightOblique3}) format('woff2'),
-        url(${sunWorldLightOblique4}) format('woff'),
-        url(${sunWorldLightOblique5}) format('truetype'),
-        url(${sunWorldLightOblique6}) format('svg');
+    url(${sunWorldLightOblique3}) format('woff2'),
+    url(${sunWorldLightOblique4}) format('woff'),
+    url(${sunWorldLightOblique5}) format('truetype'),
+    url(${sunWorldLightOblique6}) format('svg');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -119,10 +127,10 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Sun World bold';
     src: url(${sunWorldBold});
     src: url(${sunWorldBold2}) format('embedded-opentype'),
-        url(${sunWorldBold3}) format('woff2'),
-        url(${sunWorldBold4}) format('woff'),
-        url(${sunWorldBold5}) format('truetype'),
-        url(${sunWorldBold6}) format('svg');
+    url(${sunWorldBold3}) format('woff2'),
+    url(${sunWorldBold4}) format('woff'),
+    url(${sunWorldBold5}) format('truetype'),
+    url(${sunWorldBold6}) format('svg');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -130,12 +138,12 @@ export const GlobalStyle = createGlobalStyle`
 
 @font-face {
     font-family: 'Sun World light';
-    src: url( ${sunWorldLight});
-    src: url( ${sunWorldLight2}) format('embedded-opentype'),
-        url( ${sunWorldLight3}) format('woff2'),
-        url( ${sunWorldLight4}) format('woff'),
-        url( ${sunWorldLight5}) format('truetype'),
-        url( ${sunWorldLight6}) format('svg');
+    src: url(${sunWorldLight});
+    src: url(${sunWorldLight2}) format('embedded-opentype'),
+    url(${sunWorldLight3}) format('woff2'),
+    url(${sunWorldLight4}) format('woff'),
+    url(${sunWorldLight5}) format('truetype'),
+    url(${sunWorldLight6}) format('svg');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -145,10 +153,10 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Sun World heavy';
     src: url(${sunWorldHeavy});
     src: url(${sunWorldHeavy2}) format('embedded-opentype'),
-        url(${sunWorldHeavy3}) format('woff2'),
-        url(${sunWorldHeavy4}) format('woff'),
-        url(${sunWorldHeavy5}) format('truetype'),
-        url(${sunWorldHeavy6}) format('svg');
+    url(${sunWorldHeavy3}) format('woff2'),
+    url(${sunWorldHeavy4}) format('woff'),
+    url(${sunWorldHeavy5}) format('truetype'),
+    url(${sunWorldHeavy6}) format('svg');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -894,6 +902,12 @@ a {
                 }
             }
 
+            .tab-calendar {
+                height: 100%;
+            }
+
+            .calendar {}
+
             .name-tab {
                 height: 65px;
                 background: #FFF;
@@ -1312,6 +1326,7 @@ a {
                         height: 44px;
                         padding: 0 12px;
                         width: 100%;
+
                         &::placeholder {
                             color: #B1B1B1;
                         }

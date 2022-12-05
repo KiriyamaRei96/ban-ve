@@ -1,4 +1,10 @@
-import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
+import axios, {
+  AxiosRequestConfig,
+  AxiosError,
+  AxiosResponse,
+  AxiosInstance,
+  AxiosPromise,
+} from 'axios';
 import QueryString from 'qs';
 import { objectType } from 'types/customType';
 import { store } from 'index';
@@ -10,6 +16,7 @@ export const KEY_NOTIFICATION = 'KEY';
 
 const onSuccessInterceptorRequest = async (config: AxiosRequestConfig) => {
   const token = await getCookie(sunWorldToken);
+  console.log(config.headers);
   if (token && config && config.headers)
     config.headers.Authorization = `${token}`;
   config.paramsSerializer = {
@@ -76,3 +83,78 @@ const onSuccessInterceptorResponse = (response: AxiosResponse) => {
 };
 
 axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.headers.post['Accept'] = 'application/json';
+
+const _axios: AxiosInstance = axios.create({
+  baseURL: process.env.REACT_APP_API_URL || '',
+  timeout: 120 * 1000,
+  // withCredentials: true, // Check cross-site Access-Control
+});
+
+_axios.interceptors.request.use(
+  onSuccessInterceptorRequest,
+  onErrorInterceptorRequest,
+);
+
+_axios.interceptors.response.use(
+  onSuccessInterceptorResponse,
+  onErrorInterceptorResponse,
+);
+
+/**
+ *
+ * @NOTE primary methods axios
+ *
+ */
+class AxiosXHRConstructor {
+  axiosInstance: AxiosInstance;
+  constructor(axiosInstance: AxiosInstance) {
+    this.axiosInstance = axiosInstance;
+    this.$get = this.$get.bind(this);
+    this.$post = this.$post.bind(this);
+    this.$put = this.$put.bind(this);
+    this.$delete = this.$delete.bind(this);
+  }
+  public $get(
+    url: string,
+    params?: objectType,
+    config?: objectType,
+  ): AxiosPromise {
+    return this.axiosInstance.get(url, {
+      ...{ params },
+      ...config,
+    });
+  }
+  public $post(
+    url: string,
+    data?: objectType,
+    config?: objectType,
+  ): AxiosPromise {
+    return this.axiosInstance.post(url, data, config);
+  }
+  public $put(
+    url: string,
+    data?: objectType,
+    config?: objectType,
+  ): AxiosPromise {
+    return this.axiosInstance.put(url, data, config);
+  }
+  public $delete(url: string, data?: objectType): AxiosPromise {
+    // return this.axiosInstance.delete(url, {
+    //   data,
+    // });
+
+    /**
+     * @hotfix {https://github.com/axios/axios/issues/3220}
+     */
+    return this.axiosInstance.request({
+      method: 'delete',
+      url,
+      data,
+    });
+  }
+}
+
+export const BaseXHR = new AxiosXHRConstructor(_axios);
+
+export default _axios;

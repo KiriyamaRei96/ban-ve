@@ -1,1 +1,1 @@
-export const sunWorldToken = 'token';
+export const sunWorldToken = 'sunworld-token';
