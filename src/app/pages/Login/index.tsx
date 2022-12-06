@@ -33,13 +33,16 @@ export function Login(props: LoginProps) {
                   if (typeof value === 'string') formData.append(key, value);
                 });
                 const data = await (await loginAPI(formData)).data;
-                if (data.statusCode === 200) {
-                  onLogin(data);
-                } else if (data.statusCode !== 200) {
-                  form.setFields([
-                    { name: 'password', errors: [data?.message] },
-                  ]);
-                }
+                onLogin(data);
+              } catch (err: any) {
+                form.setFields([
+                  {
+                    name: 'password',
+                    errors: [
+                      err?.response?.data?.message || 'Đăng nhập thất bại',
+                    ],
+                  },
+                ]);
               } finally {
                 setLoading(false);
               }

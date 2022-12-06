@@ -5,6 +5,8 @@ import { AppState } from './types';
 import { createRoutine } from 'redux-saga-routines';
 
 export const GET_USER_INFO = createRoutine('app/getUserInfo');
+export const LOG_OUT = createRoutine('app/logOut');
+
 export const initialState: AppState = {
   loading: false,
   success: false,
@@ -19,6 +21,10 @@ const slice = createSlice({
     loginSuccesses: state => {
       state.isLogged = true;
     },
+    clearData: state => {
+      state.isLogged = false;
+      state.userInfo = {};
+    },
   },
   extraReducers: {
     [GET_USER_INFO.TRIGGER]: state => {
@@ -26,11 +32,24 @@ const slice = createSlice({
       state.error = false;
     },
     [GET_USER_INFO.SUCCESS]: (state, actions: any) => {
-      console.log(actions.payload);
+      state.userInfo = actions.payload;
       state.loading = false;
       state.error = false;
     },
     [GET_USER_INFO.FAILURE]: state => {
+      state.loading = false;
+      state.error = true;
+    },
+    [LOG_OUT.TRIGGER]: state => {
+      state.loading = true;
+      state.error = false;
+    },
+    [LOG_OUT.SUCCESS]: (state, actions: any) => {
+      // state = initialState;
+      state.loading = false;
+      state.error = false;
+    },
+    [LOG_OUT.FAILURE]: state => {
       state.loading = false;
       state.error = true;
     },

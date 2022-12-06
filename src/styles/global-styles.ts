@@ -726,12 +726,62 @@ a {
             .avatar {
                 width: 44px;
                 height: 44px;
-                overflow: hidden;
+
                 border-radius: 50%;
-                overflow: hidden;
+
                 margin-right: 40px;
                 border: 2px solid #E7E7E7;
                 position: relative;
+
+                .--wrapper {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 50%;
+                    overflow: hidden;
+                }
+
+                .--drop-down {
+                    position: absolute;
+                    visibility: hidden;
+                    list-style: none;
+                    margin: 0;
+                    padding: 0 16px;
+                    width: 128px;
+                    border-radius: 6px;
+                    z-index: 2;
+                    background-color: white;
+                    box-shadow: 0 0 6px -2px #060606;
+                    right: -25px;
+                    top: 44px;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: -18px;
+                        right: 34px;
+                        border: 10px solid white;
+                        border-top-color: transparent;
+                        border-right-color: transparent;
+                        border-left-color: transparent;
+                    }
+
+                    li {
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 20px;
+                        padding: 10px 0;
+                        cursor: pointer;
+
+                        &:first-child {
+                            border-bottom: 1px solid #E7E7E7;
+                        }
+                    }
+
+                }
+
+                &:hover .--drop-down {
+                    visibility: visible;
+                }
 
                 img {
                     width: 100%;
@@ -920,16 +970,71 @@ a {
 
                 }
 
+                .react-datepicker__header {
+                    background: none;
+                    border: none;
+                }
+
+                .react-datepicker__day-names,
                 .react-datepicker__current-month {
                     font-weight: 600;
-                    font-size: 16px;
+                    font-family: var(--font-body);
+
                     line-height: 24px;
                     color: #1F1F1F;
 
                 }
 
+                .react-datepicker__day-names {
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: space-evenly;
+                }
+
+                .react-datepicker__week {
+                    display: flex;
+                    justify-content: space-around;
+                }
+
+                .react-datepicker__current-month {
+                    font-size: 16px;
+                    margin-bottom: 12px;
+                }
+
+                .react-datepicker__navigation--previous {
+                    margin-left: 16px;
+                }
+
+                .react-datepicker__navigation--next {
+                    margin-right: 16px;
+                }
+
+                .react-datepicker__day--highlighted {
+                    background: none;
+                    border: solid 1px var(--color-3);
+                    color: #8A8A8A;
+
+                }
+
+                .react-datepicker__day--selected,
+                .react-datepicker__day--keyboard-selected {
+                    color: #1F1F1F;
+                    background: var(--color-3);
+
+                }
+
+                .react-datepicker__month {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    margin: 0.6rem;
+                    justify-content: space-evenly;
+                }
+
                 .react-datepicker__month-container {
                     width: 100%;
+                    display: flex;
+                    flex-direction: column;
                 }
             }
 
@@ -1069,6 +1174,7 @@ a {
                 background: #F1F1F1;
                 height: calc(100% - 65px);
                 padding: 10px 20px;
+                overflow-y: scroll;
 
                 .search {
                     position: relative;
@@ -1161,19 +1267,31 @@ a {
                     }
 
                     .check {
-                        padding-bottom: 12px;
-                        border-bottom: 1px solid #E7E7E7;
+                        flex-direction: column;
+
+                        /* padding-bottom: 12px;
+                        border-bottom: 1px solid #E7E7E7; */
 
                         .--item-check {
-                            margin-right: 20px;
+                            flex-direction: column;
+                            padding: 8px 0;
 
-                            input {
-                                margin-right: 12px;
+                            &>span {
+                                font-weight: 400;
+                                font-size: 18px;
+                                line-height: 24px;
+                                color: #2C2C2C;
                             }
 
-                            &:last-child {
-                                margin-right: 0;
-                            }
+                            // margin-right: 20px;
+
+                            // input {
+                            //     margin-right: 12px;
+                            // }
+
+                            // &:last-child {
+                            //     margin-right: 0;
+                            // }
                         }
                     }
 
@@ -1643,6 +1761,8 @@ a {
                     position: relative;
                     width: max-content;
                     margin-bottom: 20px;
+
+
 
                     .--img {
                         width: 150px;

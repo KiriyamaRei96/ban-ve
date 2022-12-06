@@ -1,4 +1,5 @@
 import { AppState } from 'app/pages/App/slice/types';
+import { BookingState } from 'app/pages/Booking/slice/types';
 import { ThemeState } from 'styles/theme/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
@@ -12,6 +13,7 @@ export interface RootState {
   notifications: any;
   theme?: ThemeState;
   app: AppState;
+  booking?: BookingState;
 
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

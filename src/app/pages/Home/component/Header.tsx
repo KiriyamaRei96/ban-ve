@@ -1,6 +1,7 @@
 import React from 'react';
 import { bg, comboShape, en, noti, notification, vn } from 'asset/export';
 import { useNavigate } from 'react-router-dom';
+import HeaderAvatar from './HeaderAvatar';
 export interface HeaderProps {}
 
 const Header = (props: HeaderProps) => {
@@ -146,9 +147,7 @@ const Header = (props: HeaderProps) => {
             </div>
           </div>
         </div>
-        <div onClick={() => Navigate('Account')} className="avatar">
-          <img src={bg} alt="" />
-        </div>
+        <HeaderAvatar />
         <div className="language d-flex align-items-center">
           <img src={vn.default} alt="" />
           <img src={en} alt="" />

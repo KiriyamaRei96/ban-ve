@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { appActions } from 'app/pages/App/slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCookie } from 'utils/cookies';
+import { removeCookie, setCookie } from 'utils/cookies';
 import { sunWorldToken } from 'utils/types/const';
 export const useGlobalFunctions = () => {
   const dispatch = useDispatch();
@@ -13,5 +13,6 @@ export const useGlobalFunctions = () => {
     dispatch(appActions.loginSuccesses());
     navigate('/');
   };
+
   return useMemo(() => ({ onLogin }), [onLogin]);
 };

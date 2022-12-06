@@ -8,17 +8,19 @@ import axios, {
 import QueryString from 'qs';
 import { objectType } from 'types/customType';
 import { store } from 'index';
-import { getCookie } from './cookies';
+import { getCookie, removeCookie } from './cookies';
 import { sunWorldToken } from './types/const';
 import { notify } from 'reapop';
+import { appActions } from 'app/pages/App/slice';
 
 export const KEY_NOTIFICATION = 'KEY';
 
 const onSuccessInterceptorRequest = async (config: AxiosRequestConfig) => {
   const token = await getCookie(sunWorldToken);
-  console.log(config.headers);
+
   if (token && config && config.headers)
     config.headers.Authorization = `${token}`;
+
   config.paramsSerializer = {
     encode: params =>
       QueryString.stringify(params, {
@@ -50,10 +52,10 @@ const onErrorInterceptorResponse = (error: AxiosError<objectType>) => {
         },
       ),
     );
-    // if (error.response.status === 401) {
-    //   removeCookie(TYPE_COOKIE.TOKEN);
-    //   store.dispatch(appActions.logout());
-    // }
+    if (error.response.status === 401) {
+      removeCookie(sunWorldToken);
+      store.dispatch(appActions.clearData());
+    }
   }
   return Promise.reject(error);
 };
@@ -82,7 +84,6 @@ const onSuccessInterceptorResponse = (response: AxiosResponse) => {
   return response;
 };
 
-axios.defaults.headers.post['Accept'] = 'application/json';
 axios.defaults.headers.post['Accept'] = 'application/json';
 
 const _axios: AxiosInstance = axios.create({
