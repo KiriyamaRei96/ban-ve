@@ -78,8 +78,14 @@ const Tickets = (props: TicketsProps) => {
               {ticketList.map(ticket => (
                 <div className="--item-check d-flex ">
                   <span>{ticket.name}</span>
-                  <div className="--item">
+                  <div className="--item d-flex">
                     <span>09:30 AM</span>
+                    <div>
+                      <input type="checkbox" name="" id="" />
+                      Vé Vip
+                      <input type="checkbox" name="" id="" />
+                      Vé Thường
+                    </div>
                   </div>
                   {/* <input type="radio" id="time1" name="time" value="" />
                   <label htmlFor="time1">09:30 AM</label> */}
