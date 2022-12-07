@@ -6,12 +6,14 @@ import { Form } from 'antd';
 import PayCard from './component/PayCard';
 import { cartList } from '../Booking/slice/selector';
 import { GET_PATMENT_METHODS, useCheckOutSlice } from './slice';
+import { payment } from './slice/selector';
 
 export interface CheckOutProps {}
 
 export function CheckOut(props: CheckOutProps) {
   const navigate = useNavigate();
   const cart = useSelector(cartList);
+  const selected = useSelector(payment);
   const dispatch = useDispatch();
   const { actions } = useCheckOutSlice();
   useEffect(() => {
@@ -22,6 +24,13 @@ export function CheckOut(props: CheckOutProps) {
   }, [cart]);
 
   const [form] = Form.useForm();
+  const senCheckOut = value => {
+    console.log({
+      ...value,
+      payment: selected,
+      items: cart,
+    });
+  };
   return (
     <div className="--content">
       <div className="payment ">
@@ -39,7 +48,7 @@ export function CheckOut(props: CheckOutProps) {
                 <Form
                   form={form}
                   onFinish={value => {
-                    console.log(value);
+                    senCheckOut(value);
                   }}
                   className="form_info d-flex flex-wrap justify-content-between"
                 >

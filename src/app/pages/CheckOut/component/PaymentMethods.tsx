@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { banking, banking1, money } from 'asset/export';
 import { useSelector, useDispatch } from 'react-redux';
 import { PaymentMethod } from '../slice/types';
-import { paymentMethod } from '../slice/selector';
+import { paymentMethod, payment } from '../slice/selector';
 import { v4 as uuid } from 'uuid';
+import { checkOutActions } from '../slice';
+
 export interface PaymentMethodsProps {}
 
 const PaymentMethods = (props: PaymentMethodsProps) => {
-  const [active, setActive] = useState('banking');
+  const dispatch = useDispatch();
   const paymentMethodList = useSelector(paymentMethod);
-
+  const seleted = useSelector(payment);
   return (
     <>
       <div className="--paymentmethods">
@@ -18,8 +20,8 @@ const PaymentMethods = (props: PaymentMethodsProps) => {
           {paymentMethodList.map((method: PaymentMethod) => (
             <button
               key={uuid()}
-              onClick={() => setActive('banking')}
-              className={active === 'banking' ? '--pay active' : '--pay'}
+              onClick={() => dispatch(checkOutActions.setSelected(method.id))}
+              className={method.id === seleted ? '--pay active' : '--pay'}
             >
               <img src={banking.default} alt="" />
               <span>{method.name || method.code}</span>
@@ -43,7 +45,7 @@ const PaymentMethods = (props: PaymentMethodsProps) => {
         </div>
       </div>
       <div className="--tab-pay mt-3">
-        {active === 'banking' ? (
+        {/* {active === 'banking' ? (
           <div className="--item-tabpay">
             <article>abcxyz</article>
           </div>
@@ -79,7 +81,7 @@ const PaymentMethods = (props: PaymentMethodsProps) => {
           </div>
         ) : (
           false
-        )}
+        )} */}
       </div>
     </>
   );

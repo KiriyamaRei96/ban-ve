@@ -15,7 +15,11 @@ export const initialState: CheckOutState = {
 const slice = createSlice({
   name: 'checkOut',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelected: (state, action) => {
+      state.selectedMethod = action.payload;
+    },
+  },
   extraReducers: {
     [GET_PATMENT_METHODS.TRIGGER]: state => {
       state.loading = true;
