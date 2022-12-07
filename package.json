@@ -8,6 +8,7 @@
     "bootstrap": "5.2.3",
     "cra-template-rb": "1.2.6",
     "eslint-plugin-prettier": "4.2.1",
+    "lodash": "4.17.21",
     "qs": "6.11.0",
     "query-string": "7.1.2",
     "react": "^18.2.0",
@@ -18,7 +19,8 @@
     "react-scripts": "5.0.1",
     "reapop": "4.2.0",
     "redux-saga-routines": "3.2.3",
-    "styled-components": "5.3.6"
+    "styled-components": "5.3.6",
+    "uuid": "9.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

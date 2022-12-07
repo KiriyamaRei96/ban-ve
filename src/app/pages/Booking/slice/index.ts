@@ -1,21 +1,46 @@
 import { createSlice } from 'utils/@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
+
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { createRoutine } from 'redux-saga-routines';
 import { bookingSaga } from './saga';
-import { BookingState } from './types';
+import { BookingState, CartItemType } from './types';
 export const GET_EVENTS = createRoutine('booking/getEvents');
 export const GET_TICKETS = createRoutine('booking/getTickers');
 
 export const initialState: BookingState = {
   eventList: [],
   ticketList: [],
+  cart: [],
   loading: false,
   error: false,
 };
 const slice = createSlice({
   name: 'booking',
   initialState,
-  reducers: {},
+  reducers: {
+    setStartDate: (state, action) => {
+      state.startDate = action.payload;
+    },
+    cartAdd: (state, action: PayloadAction<CartItemType>) => {
+      state.cart.push(action.payload);
+    },
+    cartDelete: (state, action) => {
+      state.cart = state.cart.filter(item => item.id !== action.payload);
+    },
+    cartClear: state => {
+      state.cart = [];
+    },
+    cartUpdateAmount: (state, action) => {
+      state.cart = state.cart.map(item => {
+        if (item.id === action.payload.id) {
+          item.amount = action.payload.amount;
+          return item;
+        }
+        return item;
+      });
+    },
+  },
   extraReducers: {
     [GET_EVENTS.TRIGGER]: state => {
       state.loading = true;

@@ -1,15 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuid } from 'uuid';
+import { bg, date, search2, search3 } from 'asset/export';
 
-import { bg, search2, search3 } from 'asset/export';
-import { loading, ticketList as list } from '../slice/selector';
+import {
+  cartList,
+  loading,
+  startDate,
+  ticketList as list,
+} from '../slice/selector';
 import { Skeleton } from 'antd';
+import { bookingActions } from '../slice';
+import { CartItemType } from '../slice/types';
 export interface TicketsProps {}
 
 const Tickets = (props: TicketsProps) => {
   const isLoading = useSelector(loading);
   const ticketList = useSelector(list);
-
+  const cart = useSelector(cartList);
+  const date = useSelector(startDate);
+  const dispatch = useDispatch();
+  const changeHandler = (e, ticket: CartItemType) => {
+    const isInCart = cart.some(item => item.id === ticket.id);
+    if (!isInCart)
+      dispatch(
+        bookingActions.cartAdd({
+          amount: 1,
+          id: ticket.id,
+          date,
+          price: ticket.price,
+          name: ticket.name,
+        }),
+      );
+    if (isInCart) dispatch(bookingActions.cartDelete(ticket.id));
+  };
   return (
     <div className="--item">
       <div className="name-tab d-flex align-items-center">
@@ -76,15 +100,30 @@ const Tickets = (props: TicketsProps) => {
           ) : (
             <div className="check mb-4 d-flex justify-content-center">
               {ticketList.map(ticket => (
-                <div className="--item-check d-flex ">
+                <div key={uuid()} className="--item-check d-flex ">
                   <span>{ticket.name}</span>
                   <div className="--item d-flex">
                     <span>09:30 AM</span>
-                    <div>
-                      <input type="checkbox" name="" id="" />
-                      Vé Vip
-                      <input type="checkbox" name="" id="" />
-                      Vé Thường
+                    <div className="--input-group d-flex">
+                      <div>
+                        <input
+                          disabled
+                          type="checkbox"
+                          name=""
+                          id={ticket.id + 'vip'}
+                        />
+                        <label htmlFor={ticket.id + 'vip'}>Vé Vip</label>
+                      </div>
+                      <div>
+                        <input
+                          onChange={e => changeHandler(e, ticket)}
+                          checked={cart.some(item => item.id === ticket.id)}
+                          type="checkbox"
+                          name=""
+                          id={ticket.id + 'normal'}
+                        />
+                        <label htmlFor={ticket.id + 'normal'}> Vé Thường</label>
+                      </div>
                     </div>
                   </div>
                   {/* <input type="radio" id="time1" name="time" value="" />

@@ -3,7 +3,7 @@ import BookingDate from './BookingDate';
 import { useDispatch, useSelector } from 'react-redux';
 import { calendar1 } from 'asset/export';
 import { eventList as list } from '../slice/selector';
-import { GET_TICKETS } from '../slice';
+import { bookingActions, GET_TICKETS } from '../slice';
 export interface EventListProps {}
 
 const EventList = (props: EventListProps) => {
@@ -13,6 +13,7 @@ const EventList = (props: EventListProps) => {
   const [selected, setSelected] = useState(eventList[0]?.id || '');
   useEffect(() => {
     const date = startDate.toISOString().split('T')[0];
+    dispatch(bookingActions.setStartDate(date));
     if (selected !== '')
       dispatch(
         GET_TICKETS({
@@ -50,7 +51,13 @@ const EventList = (props: EventListProps) => {
           </div> */}
         </div>
         <div className="calendar">
-          <BookingDate startDate={startDate} setStartDate={setStartDate} />
+          <BookingDate
+            startDate={startDate}
+            setStartDate={date => {
+              setStartDate(date);
+              dispatch(bookingActions.cartClear());
+            }}
+          />
         </div>
       </div>
     </div>

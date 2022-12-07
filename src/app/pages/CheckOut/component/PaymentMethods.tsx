@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
 import { banking, banking1, money } from 'asset/export';
+import { useSelector, useDispatch } from 'react-redux';
+import { PaymentMethod } from '../slice/types';
+import { paymentMethod } from '../slice/selector';
+import { v4 as uuid } from 'uuid';
 export interface PaymentMethodsProps {}
 
 const PaymentMethods = (props: PaymentMethodsProps) => {
   const [active, setActive] = useState('banking');
+  const paymentMethodList = useSelector(paymentMethod);
 
   return (
     <>
       <div className="--paymentmethods">
         <h5>Payment method</h5>
         <div className="--payment">
-          <button
-            onClick={() => setActive('banking')}
-            className={active === 'banking' ? '--pay active' : '--pay'}
-          >
-            <img src={banking.default} alt="" />
-            <span>Chuyển khoản</span>
-          </button>
+          {paymentMethodList.map((method: PaymentMethod) => (
+            <button
+              key={uuid()}
+              onClick={() => setActive('banking')}
+              className={active === 'banking' ? '--pay active' : '--pay'}
+            >
+              <img src={banking.default} alt="" />
+              <span>{method.name || method.code}</span>
+            </button>
+          ))}
+          {/* 
           <button
             onClick={() => setActive('online')}
             className={active === 'online' ? '--pay active' : '--pay'}
@@ -30,7 +39,7 @@ const PaymentMethods = (props: PaymentMethodsProps) => {
           >
             <img src={money.default} alt="" />
             <span>Tiền mặt</span>
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="--tab-pay mt-3">

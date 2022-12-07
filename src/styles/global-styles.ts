@@ -1110,6 +1110,23 @@ a {
                     line-height: 1;
                     align-items: center;
 
+                    input[type="number"] {
+                        -webkit-appearance: textfield;
+                        -moz-appearance: textfield;
+                        appearance: textfield;
+                        border: none;
+                        outline: none;
+                        margin: 0 12px;
+                        width: auto;
+                        max-width: 34px;
+                    }
+
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                    }
+
+
                     span {
                         margin: 0 12px;
                     }
@@ -1281,6 +1298,46 @@ a {
                                 font-size: 18px;
                                 line-height: 24px;
                                 color: #2C2C2C;
+                            }
+
+                            .--item {
+                                width: 100%;
+
+
+                                &>* {
+                                    flex: 1;
+                                }
+
+                                .--input-group {
+                                    div {
+                                        display: inherit;
+                                        align-items: center;
+                                    }
+
+                                    input[type=checkbox] {
+
+
+                                        margin-right: 8px;
+                                        height: 20px;
+                                        width: 20px;
+                                        background: #FFFFFF;
+
+                                        border: 1px solid #D8D8D8;
+                                        border-radius: 4px;
+                                    }
+
+                                    input[type=checkbox]:checked {
+                                        accent-color: var(--color-3);
+                                    }
+
+                                    label {
+                                        height: 20px;
+                                    }
+
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    justify-content: space-between;
+                                }
                             }
 
                             // margin-right: 20px;

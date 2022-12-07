@@ -14,3 +14,8 @@ export const ticketList = createSelector(
   [bookingState],
   state => state.ticketList,
 );
+export const startDate = createSelector(
+  [bookingState],
+  state => state.startDate,
+);
+export const cartList = createSelector([bookingState], state => state.cart);
