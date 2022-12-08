@@ -38,13 +38,13 @@ export function History(props: HistoryProps) {
         <div className="table-ticket">
           <div className="--name d-flex justify-content-between">
             <p className="fs-18">PNR</p>
-            <p className="fs-18">PNR</p>
-            <p className="fs-18">PNR</p>
-            <p className="fs-18">PNR</p>
-            <p className="fs-18">PNR</p>
-            <p className="fs-18">PNR</p>
-            <p className="fs-18">PNR</p>
-            <p className="fs-18">PNR</p>
+            <p className="fs-18">Date time</p>
+            <p className="fs-18">Flags</p>
+            <p className="fs-18">Status</p>
+            <p className="fs-18">Payment method</p>
+            <p className="fs-18">Quantity</p>
+            <p className="fs-18">Amount paid</p>
+            <p className="fs-18">Options</p>
           </div>
           <div className="--item-ticket">
             <div className="--name-ticket">#1363794</div>

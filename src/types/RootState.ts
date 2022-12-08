@@ -1,6 +1,7 @@
 import { AppState } from 'app/pages/App/slice/types';
 import { BookingState } from 'app/pages/Booking/slice/types';
 import { CheckOutState } from 'app/pages/CheckOut/slice/types';
+import { HistoryState } from 'app/pages/History/slice/types';
 import { ThemeState } from 'styles/theme/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
@@ -16,6 +17,7 @@ export interface RootState {
   app: AppState;
   booking?: BookingState;
   checkOut?: CheckOutState;
+  history?: HistoryState;
 
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

@@ -21,6 +21,7 @@ export interface Agent extends I_Object {
   address: string | number | null;
   phone: string | number | null;
 }
+
 export interface ResponseType {
   id: number | undefined;
   ordernumber: string;
@@ -40,11 +41,26 @@ export interface ResponseType {
   tourNotes: string | number | null;
   agent: Agent;
 }
-export interface CheckOutState {
+export interface StateOption {
+  active: boolean;
+  name: string;
+  value: string;
+}
+export interface Pagination {
+  current: number;
+  totalCount: number;
+  numItemsPerPage: number;
+}
+export interface SearchOptions {
+  page?: number;
+  fromTime?: string;
+  toTime?: string;
+  orderState?: string;
+}
+export interface HistoryState {
   loading: boolean;
   error: boolean;
-  paymentMethodList: [PaymentMethod] | any[];
-  selectedMethod?: string | number;
-  response?: ResponseType | undefined;
-  isOrder?: boolean;
+  orderStateOption?: [StateOption] | any[];
+  pagination?: Pagination;
+  search?: SearchOptions;
 }

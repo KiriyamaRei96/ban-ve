@@ -1476,6 +1476,9 @@ a {
             }
 
             .list-order {
+                max-height: 242px;
+                overflow-y: scroll;
+
                 .--value {
                     width: 90px;
                     color: var(--color-4);

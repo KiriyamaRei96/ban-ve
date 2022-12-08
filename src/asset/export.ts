@@ -29,7 +29,7 @@ export const edit = require('./edit.svg');
 export const paymentFail = require('./payment-fail.svg');
 export const mobilePayment = require('./mobile payment.svg');
 export const moneyBag = require('./money bag.svg');
-
+export const checked = require('./15-Checked.png');
 export const date = require('./date.svg');
 export const card = require('./card.svg');
 export const refresh = require('./refresh.svg');

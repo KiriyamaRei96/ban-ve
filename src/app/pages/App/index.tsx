@@ -33,6 +33,8 @@ import { auth } from 'utils/helper';
 import { ProtectedRoute } from './component/ProtectedRoute';
 import { isLogged, selectNotifications } from './slice/selector';
 import { useDispatch, useSelector } from 'react-redux';
+// import { syncHistoryWithStore } from 'react-router-redux';
+
 setUpNotifications({
   defaultProps: {
     allowHTML: true,
@@ -82,7 +84,10 @@ export function App() {
           <Route index element={<Booking />}></Route>
           <Route path="History" element={<History />}></Route>
           <Route path="History/:id" element={<Historydetail />}></Route>
-          <Route path="PaymentCallback" element={<PaymentCallback />}></Route>
+          <Route
+            path="PaymentCallback/:info"
+            element={<PaymentCallback />}
+          ></Route>
           <Route path="Account" element={<Account />}></Route>
           <Route path="CheckOut" element={<CheckOut />}></Route>
         </Route>

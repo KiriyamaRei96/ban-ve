@@ -9,9 +9,15 @@ import { checkOutActions } from '../slice';
 export interface PaymentMethodsProps {}
 
 const PaymentMethods = (props: PaymentMethodsProps) => {
+  const methodMap = {
+    Credit: banking1,
+    'Web payment': banking,
+    Cash: money,
+  };
   const dispatch = useDispatch();
   const paymentMethodList = useSelector(paymentMethod);
   const seleted = useSelector(payment);
+
   return (
     <>
       <div className="--paymentmethods">
@@ -23,7 +29,7 @@ const PaymentMethods = (props: PaymentMethodsProps) => {
               onClick={() => dispatch(checkOutActions.setSelected(method.id))}
               className={method.id === seleted ? '--pay active' : '--pay'}
             >
-              <img src={banking.default} alt="" />
+              <img src={methodMap[method.code]?.default || ''} alt="" />
               <span>{method.name || method.code}</span>
             </button>
           ))}
