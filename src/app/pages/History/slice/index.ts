@@ -9,9 +9,11 @@ export const SEARCH_HISTORY = createRoutine('history/search');
 export const initialState: HistoryState = {
   loading: false,
   error: false,
+  orderStateOption: [],
   search: {
     page: 1,
   },
+  historyList: [],
 };
 const slice = createSlice({
   name: 'history',
@@ -20,12 +22,32 @@ const slice = createSlice({
     clearSearch: state => {
       state.search = { page: 1 };
     },
+    setOption: (state, action) => {
+      state.search = { ...state.search, orderState: action.payload };
+    },
+    setPage: (state, action) => {
+      state.search = { ...state.search, page: action.payload };
+    },
+    setSearch: (state, action) => {
+      console.log(action.payload);
+      state.search = { ...state.search, search: action.payload };
+    },
+    setDate: (state, action) => {
+      state.search = {
+        ...state.search,
+        fromTime: action.payload.fromTime,
+        toTime: action.payload.toTime,
+      };
+    },
   },
   extraReducers: {
     [SEARCH_HISTORY.TRIGGER]: state => {
       state.loading = true;
     },
     [SEARCH_HISTORY.SUCCESS]: (state, action) => {
+      state.historyList = action.payload.data;
+      state.pagination = action.payload.paginator;
+      state.orderStateOption = action.payload.orderStateOption;
       state.loading = false;
     },
     [SEARCH_HISTORY.FAILURE]: state => {

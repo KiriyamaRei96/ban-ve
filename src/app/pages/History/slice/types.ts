@@ -56,11 +56,13 @@ export interface SearchOptions {
   fromTime?: string;
   toTime?: string;
   orderState?: string;
+  search?: string;
 }
 export interface HistoryState {
   loading: boolean;
   error: boolean;
-  orderStateOption?: [StateOption] | any[];
+  orderStateOption: [StateOption] | any[];
   pagination?: Pagination;
   search?: SearchOptions;
+  historyList: [ResponseType] | any[];
 }

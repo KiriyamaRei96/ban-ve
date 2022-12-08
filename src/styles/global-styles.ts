@@ -1993,6 +1993,8 @@ a {
 
         .history {
             padding: 24px 20px;
+            flex-direction: column;
+            height: 100%;
 
             .filter {
 
@@ -2056,10 +2058,14 @@ a {
             }
 
             .table-ticket {
+                overflow-y: auto;
+
                 .--item-ticket {
                     display: flex;
                     justify-content: space-between;
                 }
+
+                flex: 1;
 
                 .--name-ticket {
                     color: #5969FD;
