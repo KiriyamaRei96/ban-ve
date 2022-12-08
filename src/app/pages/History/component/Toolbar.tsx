@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { searchInfo } from '../slice/selector';
 import { historyActions } from '../slice';
 import useDebounce from 'utils/hooks/usedebounce';
+import DatePicker from 'react-datepicker';
 
 const Toolbar = ({ options }) => {
   const selected = useSelector(searchInfo)?.orderState;
@@ -15,7 +16,8 @@ const Toolbar = ({ options }) => {
   };
   const [text, setText] = useState<string>();
   const debounced = useDebounce(text, 200);
-
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   useEffect(() => {
     dispatch(historyActions.setSearch(text));
   }, [debounced]);
@@ -31,7 +33,16 @@ const Toolbar = ({ options }) => {
           <img src={search2.default} alt="" />
         </div>
         <div className="day me-2">
-          <input type="text" />
+          <DatePicker
+            startDate={startDate}
+            endDate={endDate}
+            selectsRange
+            onChange={dates => {
+              const [start, end] = dates;
+              setStartDate(start);
+              setEndDate(end);
+            }}
+          />
           <img src={date.default} alt="" />
         </div>
         <div className="open">
