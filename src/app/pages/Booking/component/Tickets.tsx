@@ -6,22 +6,36 @@ import { bg, date, search2, search3 } from 'asset/export';
 import {
   cartList,
   loading,
+  parentCategory,
+  performances,
+  search,
   startDate,
   ticketList as list,
 } from '../slice/selector';
 import { Skeleton } from 'antd';
 import { bookingActions } from '../slice';
-import { CartItemType } from '../slice/types';
+import {
+  CartItemType,
+  ParentCategoryDataType,
+  PerformancesDataType,
+  TicketsType,
+} from '../slice/types';
 export interface TicketsProps {}
 
 const Tickets = (props: TicketsProps) => {
   const isLoading = useSelector(loading);
   const ticketList = useSelector(list);
+  const category = useSelector(parentCategory);
+  const performance = useSelector(performances);
+
   const cart = useSelector(cartList);
-  const date = useSelector(startDate);
+  const date = useSelector(search)?.date;
   const dispatch = useDispatch();
   const changeHandler = (e, ticket: CartItemType) => {
-    const isInCart = cart.some(item => item.id === ticket.id);
+    const isInCart = cart.some(
+      item =>
+        item.id === ticket.id && item.performance == performance?.currentValue,
+    );
     if (!isInCart)
       dispatch(
         bookingActions.cartAdd({
@@ -30,6 +44,7 @@ const Tickets = (props: TicketsProps) => {
           date,
           price: ticket.price,
           name: ticket.name,
+          performance: performance?.currentValue,
         }),
       );
     if (isInCart) dispatch(bookingActions.cartDelete(ticket.id));
@@ -37,11 +52,33 @@ const Tickets = (props: TicketsProps) => {
   return (
     <div className="--item">
       <div className="name-tab d-flex align-items-center">
-        <div className="--item-tab --link fw-bold ">PARK TICKETS</div>
-        <div className="--item-tab --link fw-bold active">SIGNATURE SHOW</div>
+        {category &&
+          category.data.map((item: ParentCategoryDataType) => {
+            return (
+              <div
+                key={uuid()}
+                onClick={() => {
+                  dispatch(
+                    bookingActions.setSearch({
+                      parentCategoryIds: item.value,
+                    }),
+                  );
+                }}
+                className={
+                  category.currentValue == item.value
+                    ? '--item-tab --link fw-bold active'
+                    : '--item-tab --link fw-bold'
+                }
+              >
+                {item.name}
+              </div>
+            );
+          })}
+
+        {/* <div className="--item-tab --link fw-bold active">SIGNATURE SHOW</div> */}
       </div>
       <div className="tab-content">
-        <div className="--item-content">
+        {/* <div className="--item-content">
           <div className="search-filter d-flex">
             <div className="search">
               <img src={search2.default} alt="" />
@@ -90,46 +127,78 @@ const Tickets = (props: TicketsProps) => {
               <i className="fa-solid fa-check"></i>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="--item-content active">
-          <h6 className="fs-18 mb-3">
+          {/* <h6 className="fs-18 mb-3">
             Ves xem show diễn Signature Show Phú Quốc
-          </h6>
+          </h6> */}
           {isLoading ? (
             <Skeleton active />
           ) : (
             <div className="check mb-4 d-flex justify-content-center">
-              {ticketList.map(ticket => (
-                <div key={uuid()} className="--item-check d-flex ">
-                  <span>{ticket.name}</span>
-                  <div className="--item d-flex">
-                    <span>09:30 AM</span>
-                    <div className="--input-group d-flex">
-                      <div>
-                        <input
-                          disabled
-                          type="checkbox"
-                          name=""
-                          id={ticket.id + 'vip'}
-                        />
-                        <label htmlFor={ticket.id + 'vip'}>Vé Vip</label>
-                      </div>
-                      <div>
-                        <input
-                          onChange={e => changeHandler(e, ticket)}
-                          checked={cart.some(item => item.id === ticket.id)}
-                          type="checkbox"
-                          name=""
-                          id={ticket.id + 'normal'}
-                        />
-                        <label htmlFor={ticket.id + 'normal'}> Vé Thường</label>
-                      </div>
+              {performance &&
+                performance.data.map((item: PerformancesDataType) => (
+                  <div
+                    onClick={() => {
+                      dispatch(
+                        bookingActions.setSearch({
+                          performances: item.value,
+                        }),
+                      );
+                    }}
+                    key={uuid()}
+                    className={
+                      performance.currentValue == item.value
+                        ? '--item-check d-flex active'
+                        : '--item-check d-flex'
+                    }
+                  >
+                    <span>{item.json.name}</span>
+                    <div className="--item d-flex">
+                      <span>
+                        {item.json.dateFrom.datetime} -{' '}
+                        {item.json.dateTo.datetime}
+                      </span>
                     </div>
-                  </div>
-                  {/* <input type="radio" id="time1" name="time" value="" />
+                    {performance.currentValue == item.value &&
+                      ticketList.map(ticket => (
+                        <div
+                          onClick={e => e.stopPropagation()}
+                          key={uuid()}
+                          className="--input-group d-flex"
+                        >
+                          {/* <div>
+                            <input
+                              disabled
+                              type="checkbox"
+                              name=""
+                              id={ticket.id + 'vip'}
+                            />
+                            <label htmlFor={ticket.id + 'vip'}>Vé Vip</label>
+                          </div> */}
+                          <div>
+                            <label htmlFor={ticket.id + 'normal'}>
+                              {ticket.name}
+                            </label>
+                            <input
+                              onChange={e => changeHandler(e, ticket)}
+                              checked={cart.some(
+                                item =>
+                                  item.id === ticket.id &&
+                                  item.performance == performance.currentValue,
+                              )}
+                              type="checkbox"
+                              name=""
+                              id={ticket.id + 'normal'}
+                            />
+                          </div>
+                        </div>
+                      ))}
+
+                    {/* <input type="radio" id="time1" name="time" value="" />
                   <label htmlFor="time1">09:30 AM</label> */}
-                </div>
-              ))}
+                  </div>
+                ))}
 
               {/* <div className="--item-check d-flex align-items-center">
               <input type="radio" id="time2" name="time" value="" />

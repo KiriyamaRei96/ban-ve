@@ -424,7 +424,7 @@ a {
         margin: 0 2px;
     }
 
-    .page-link {
+    .ant-pagination-item {
         box-shadow: unset;
         border-radius: 4px;
         width: 32px;
@@ -433,7 +433,7 @@ a {
         background: none;
         color: #181818;
 
-        &.active {
+        &.ant-pagination-item-active {
             background: var(--color-3);
         }
     }
@@ -1190,8 +1190,10 @@ a {
             .tab-content {
                 background: #F1F1F1;
                 height: calc(100% - 65px);
-                padding: 10px 20px;
-                overflow-y: scroll;
+
+                overflow-y: auto;
+
+
 
                 .search {
                     position: relative;
@@ -1291,7 +1293,25 @@ a {
 
                         .--item-check {
                             flex-direction: column;
-                            padding: 8px 0;
+                            padding: 0 20px;
+
+                            &.active {
+                                background-color: white;
+
+                                &>span {
+                                    color: var(--color-3);
+                                }
+                            }
+
+                            &>:first-child {
+                                padding-top: 8px;
+                                border-top: 1px solid #E7E7E7;
+                            }
+
+                            &>:last-child {
+                                padding-bottom: 8px;
+                                border-bottom: 1px solid #E7E7E7;
+                            }
 
                             &>span {
                                 font-weight: 400;
@@ -1302,42 +1322,50 @@ a {
 
                             .--item {
                                 width: 100%;
-
+                                border: none;
 
                                 &>* {
                                     flex: 1;
                                 }
 
-                                .--input-group {
-                                    div {
-                                        display: inherit;
-                                        align-items: center;
-                                    }
 
-                                    input[type=checkbox] {
+                            }
 
+                            .--input-group {
+                                padding: 8px 0;
 
-                                        margin-right: 8px;
-                                        height: 20px;
-                                        width: 20px;
-                                        background: #FFFFFF;
-
-                                        border: 1px solid #D8D8D8;
-                                        border-radius: 4px;
-                                    }
-
-                                    input[type=checkbox]:checked {
-                                        accent-color: var(--color-3);
-                                    }
-
-                                    label {
-                                        height: 20px;
-                                    }
-
-                                    font-size: 14px;
-                                    line-height: 20px;
+                                div {
+                                    display: inherit;
+                                    align-items: center;
+                                    width: 100%;
                                     justify-content: space-between;
+                                    align-items: center;
+
                                 }
+
+                                input[type=checkbox] {
+
+
+
+                                    height: 20px;
+                                    width: 20px;
+                                    background: #FFFFFF;
+
+                                    border: 1px solid #D8D8D8;
+                                    border-radius: 4px;
+                                }
+
+                                input[type=checkbox]:checked {
+                                    accent-color: var(--color-3);
+                                }
+
+                                label {
+                                    height: 20px;
+                                }
+
+
+                                line-height: 20px;
+                                justify-content: space-between;
                             }
 
                             // margin-right: 20px;

@@ -8,7 +8,9 @@ const BookingDate = ({ startDate, setStartDate }) => {
       highlightDates={[new Date(), 0]}
       inline
       selected={startDate}
-      onChange={date => setStartDate(date)}
+      onChange={date => {
+        setStartDate(date);
+      }}
     />
   );
 };

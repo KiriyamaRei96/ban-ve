@@ -25,6 +25,7 @@ export function PaymentCallback(props: PaymentCallbackProps) {
           <Confrim
             id={responseInfo?.id}
             orderState={responseInfo?.orderState}
+            payment={responseInfo?.payment}
           />
           <OrderDetail res={responseInfo} />
         </div>

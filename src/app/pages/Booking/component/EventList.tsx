@@ -2,26 +2,22 @@ import React, { useState, useEffect } from 'react';
 import BookingDate from './BookingDate';
 import { useDispatch, useSelector } from 'react-redux';
 import { calendar1 } from 'asset/export';
-import { eventList as list } from '../slice/selector';
+import { eventList as list, search } from '../slice/selector';
 import { bookingActions, GET_TICKETS } from '../slice';
+import moment from 'moment';
 export interface EventListProps {}
 
 const EventList = (props: EventListProps) => {
   const eventList = useSelector(list);
+  const searchData = useSelector(search);
+
   const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
-  const [selected, setSelected] = useState(eventList[0]?.id || '');
+  const [startDate, setStartDate] = useState<any>(null);
+
   useEffect(() => {
-    const date = startDate.toISOString().split('T')[0];
-    dispatch(bookingActions.setStartDate(date));
-    if (selected !== '')
-      dispatch(
-        GET_TICKETS({
-          event: selected,
-          date,
-        }),
-      );
-  }, [startDate, selected]);
+    if (searchData?.event && searchData?.date)
+      dispatch(GET_TICKETS(searchData));
+  }, [searchData]);
   return (
     <div className="--item d-flex flex-column">
       <div className="name-tab d-flex align-items-center">
@@ -34,9 +30,11 @@ const EventList = (props: EventListProps) => {
         <div className="tab-bar">
           {eventList.map(event => (
             <div
-              onClick={() => setSelected(event.id)}
+              onClick={() => {
+                dispatch(bookingActions.setSearch({ event: event.id }));
+              }}
               className={
-                selected === event.id
+                searchData?.event === event.id
                   ? '--item-tab-bar active'
                   : '--item-tab-bar'
               }
@@ -55,6 +53,10 @@ const EventList = (props: EventListProps) => {
             startDate={startDate}
             setStartDate={date => {
               setStartDate(date);
+              const output = moment(date).format('YYYY-MM-DD');
+
+              dispatch(bookingActions.setSearch({ date: output }));
+
               dispatch(bookingActions.cartClear());
             }}
           />

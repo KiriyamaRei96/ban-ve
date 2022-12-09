@@ -10,10 +10,20 @@ export const eventList = createSelector(
   state => state.eventList,
 );
 export const loading = createSelector([bookingState], state => state.loading);
+export const search = createSelector([bookingState], state => state.search);
 export const ticketList = createSelector(
   [bookingState],
   state => state.ticketList,
 );
+export const parentCategory = createSelector(
+  [bookingState],
+  state => state.filter?.parentCategoryIds,
+);
+export const performances = createSelector(
+  [bookingState],
+  state => state.filter?.performances,
+);
+
 export const startDate = createSelector(
   [bookingState],
   state => state.startDate,

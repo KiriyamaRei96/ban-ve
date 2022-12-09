@@ -1,5 +1,6 @@
 import { date, search2 } from 'asset/export';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { StateOption } from '../slice/types';
 import { v4 as uuid } from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,17 +11,29 @@ import DatePicker from 'react-datepicker';
 
 const Toolbar = ({ options }) => {
   const selected = useSelector(searchInfo)?.orderState;
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const selectHandler = e => {
     dispatch(historyActions.setOption(e.target.value));
   };
   const [text, setText] = useState<string>();
   const debounced = useDebounce(text, 200);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState<any>(null);
+  const [endDate, setEndDate] = useState<any>(null);
   useEffect(() => {
     dispatch(historyActions.setSearch(text));
   }, [debounced]);
+  useEffect(() => {
+    const from = startDate?.toISOString().split('T')[0];
+    const to = endDate?.toISOString().split('T')[0];
+    if (from && to)
+      dispatch(
+        historyActions.setDate({
+          fromTime: from,
+          toTime: to,
+        }),
+      );
+  }, [startDate, endDate]);
   return (
     <div className="toolbar d-flex justify-content-between mb-3">
       <div className="filter d-flex align-items-center ">
@@ -61,7 +74,7 @@ const Toolbar = ({ options }) => {
           </select>
         </div>
       </div>
-      <button className="add-ticket">
+      <button onClick={() => navigate('/')} className="add-ticket">
         <i className="fa-solid fa-plus"></i> <span>New tickets</span>
       </button>
     </div>

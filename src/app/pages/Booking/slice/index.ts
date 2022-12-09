@@ -19,6 +19,9 @@ const slice = createSlice({
   name: 'booking',
   initialState,
   reducers: {
+    setSearch: (state, action) => {
+      state.search = { ...state.search, ...action.payload };
+    },
     setStartDate: (state, action) => {
       state.startDate = action.payload;
     },
@@ -48,6 +51,7 @@ const slice = createSlice({
     },
     [GET_EVENTS.SUCCESS]: (state, actions: any) => {
       state.eventList = actions.payload;
+
       state.loading = false;
       state.error = false;
     },
@@ -60,7 +64,8 @@ const slice = createSlice({
       state.error = false;
     },
     [GET_TICKETS.SUCCESS]: (state, actions: any) => {
-      state.ticketList = actions.payload;
+      state.ticketList = actions.payload.data;
+      state.filter = actions.payload.filters;
       state.loading = false;
       state.error = false;
     },

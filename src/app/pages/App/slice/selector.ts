@@ -11,3 +11,4 @@ export const selectNotifications = createSelector(
   state => state,
 );
 export const isLogged = createSelector([globalState], state => state.isLogged);
+export const userInfo = createSelector([globalState], state => state.userInfo);

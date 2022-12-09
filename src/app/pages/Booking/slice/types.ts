@@ -19,7 +19,44 @@ export interface CartItemType extends I_Object {
   amount: number;
   date: string | undefined;
   price: number | null;
+  performance: string | number | null | undefined;
 }
+export interface ParentCategoryDataType {
+  name: string | number | null;
+  value: string | number | null;
+  count: string | number | null;
+}
+export interface PerformancesJsonType extends I_Object {
+  quantityFree: number;
+  quantityMax: number;
+  dateFrom: {
+    date: string;
+    datetime: string;
+  };
+  dateTo: {
+    date: string;
+    datetime: string;
+  };
+}
+export interface PerformancesDataType {
+  value: string | number | null;
+  count: string | number | null;
+  json: PerformancesJsonType;
+}
+export interface FitlterItemsType {
+  label: string | number | null;
+  type: string | number | null;
+  fieldname: string | number | null;
+  currentValue: string | number | null;
+  currentCategory: string | number | null;
+}
+export interface ParentCategoryType extends FitlterItemsType {
+  data: [ParentCategoryDataType] | any[];
+}
+export interface PerformancesType extends FitlterItemsType {
+  data: [PerformancesDataType] | any[];
+}
+
 export interface BookingState {
   eventList: [I_Object] | [];
   ticketList: [TicketsType] | [];
@@ -27,4 +64,14 @@ export interface BookingState {
   loading: boolean;
   error: boolean;
   startDate?: string;
+  filter?: {
+    parentCategoryIds?: ParentCategoryType;
+    performances?: PerformancesType;
+  };
+  search?: {
+    event?: number | string;
+    date?: string;
+    parentCategoryIds?: number | string;
+    performances?: number | string;
+  };
 }

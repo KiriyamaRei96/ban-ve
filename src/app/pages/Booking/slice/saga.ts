@@ -17,7 +17,7 @@ export function* getTickets({ payload }) {
     const param = QueryString.stringify(payload);
 
     const { data } = yield call(getTicketsAPI, param);
-    yield put(GET_TICKETS.success(data.data));
+    yield put(GET_TICKETS.success(data));
   } catch ({ response }) {
     console.log(response);
     yield put(GET_TICKETS.failure());

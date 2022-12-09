@@ -23,20 +23,21 @@ const slice = createSlice({
       state.search = { page: 1 };
     },
     setOption: (state, action) => {
-      state.search = { ...state.search, orderState: action.payload };
+      state.search = { ...state.search, orderState: action.payload, page: 1 };
     },
     setPage: (state, action) => {
       state.search = { ...state.search, page: action.payload };
     },
     setSearch: (state, action) => {
       console.log(action.payload);
-      state.search = { ...state.search, search: action.payload };
+      state.search = { ...state.search, search: action.payload, page: 1 };
     },
     setDate: (state, action) => {
       state.search = {
         ...state.search,
         fromTime: action.payload.fromTime,
         toTime: action.payload.toTime,
+        page: 1,
       };
     },
   },
