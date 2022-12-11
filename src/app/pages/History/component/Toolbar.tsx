@@ -8,6 +8,7 @@ import { searchInfo } from '../slice/selector';
 import { historyActions } from '../slice';
 import useDebounce from 'utils/hooks/usedebounce';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 const Toolbar = ({ options }) => {
   const selected = useSelector(searchInfo)?.orderState;
@@ -24,9 +25,10 @@ const Toolbar = ({ options }) => {
     dispatch(historyActions.setSearch(text));
   }, [debounced]);
   useEffect(() => {
-    const from = startDate?.toISOString().split('T')[0];
-    const to = endDate?.toISOString().split('T')[0];
-    if (from && to)
+    const from = moment(startDate).format('YYYY-MM-DD');
+    const to = moment(endDate).format('YYYY-MM-DD');
+
+    if (from && to !== 'Invalid date')
       dispatch(
         historyActions.setDate({
           fromTime: from,
