@@ -34,3 +34,5 @@ export const date = require('./date.svg');
 export const card = require('./card.svg');
 export const refresh = require('./refresh.svg');
 export const qr = require('./qr.png');
+export const store = require('./store 01.png');
+export const vector = require('./Vector.png');

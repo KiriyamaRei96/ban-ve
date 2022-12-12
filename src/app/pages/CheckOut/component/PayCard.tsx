@@ -4,9 +4,12 @@ import { useSelector } from 'react-redux';
 import { cartList } from 'app/pages/Booking/slice/selector';
 import { CartItemType } from 'app/pages/Booking/slice/types';
 import { numberWithCommas } from 'utils/helper';
+import { loading } from '../slice/selector';
+import { Spin } from 'antd';
 
 const PayCard = ({ form }) => {
   const cart = useSelector(cartList);
+  const isLoading = useSelector(loading);
   const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
@@ -86,8 +89,14 @@ const PayCard = ({ form }) => {
             }}
             className="button_1"
           >
-            <img src={sent.default} alt="" />
-            <span className="fs-18">Order Now</span>
+            {!isLoading ? (
+              <>
+                <img src={sent.default} alt="" />
+                <span className="fs-18">Order Now</span>
+              </>
+            ) : (
+              <Spin />
+            )}
           </button>
         </div>
       </div>

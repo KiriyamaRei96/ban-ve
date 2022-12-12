@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { numberWithCommas } from 'utils/helper';
 import { Form } from 'antd';
-import { eyeScanner, prin } from 'asset/export';
-import { ResponseType, Seats } from 'app/pages/CheckOut/slice/types';
+import { eyeScanner } from 'asset/export';
+import { ResponseType } from 'app/pages/CheckOut/slice/types';
 import { v4 as uuid } from 'uuid';
 // import { Modal } from './Modal';
 import Modal from 'react-bootstrap/Modal';
 import { ModalContent } from './Modal';
-const InfoTicket = ({ res }) => {
+const InfoTicket = ({ res, loading = false }) => {
   const data: ResponseType = res;
   const [isShow, setIsShow] = useState(false);
+  const [modalData, setModalData] = useState(null);
+  function viewHandler(item) {
+    setModalData(item.tickets);
+    setIsShow(true);
+  }
   const onCloseDialog = () => {
     setIsShow(false);
   };
@@ -88,7 +93,7 @@ const InfoTicket = ({ res }) => {
                       <a
                         className=""
                         data-bs-toggle="modal"
-                        onClick={() => setIsShow(true)}
+                        onClick={() => viewHandler(item)}
                         role="button"
                       >
                         <img src={eyeScanner.default} alt="" />
@@ -193,7 +198,7 @@ const InfoTicket = ({ res }) => {
         onHide={onCloseDialog}
       >
         <Modal.Body className="d-flex p-0">
-          <ModalContent />
+          <ModalContent modalData={modalData} />
         </Modal.Body>
       </Modal>
     </>

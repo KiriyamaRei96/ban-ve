@@ -4,6 +4,8 @@
  * This is the entry file for the application, only setup and boilerplate
  * code.
  */
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';

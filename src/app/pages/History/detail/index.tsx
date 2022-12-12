@@ -15,7 +15,6 @@ export function Historydetail(props: HistorydetailProps) {
   const dispatch = useDispatch();
   const data = useSelector(response);
   useEffect(() => {
-    console.log(param);
     dispatch(GET_HISTORY_DETAIL(param.id));
   }, [param, location]);
   return (

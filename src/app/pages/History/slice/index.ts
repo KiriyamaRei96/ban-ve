@@ -29,7 +29,6 @@ const slice = createSlice({
       state.search = { ...state.search, page: action.payload };
     },
     setSearch: (state, action) => {
-      console.log(action.payload);
       state.search = { ...state.search, search: action.payload, page: 1 };
     },
     setDate: (state, action) => {

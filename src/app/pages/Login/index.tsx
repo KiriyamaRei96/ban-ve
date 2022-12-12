@@ -1,6 +1,7 @@
 import { bg, logo1 } from 'asset/export';
 import React, { useState } from 'react';
 import LoginWrapper from './styled';
+import { useNavigate } from 'react-router-dom';
 import { Form, message, Spin } from 'antd';
 import { loginAPI } from 'app/service/accountAPI';
 import { useGlobalFunctions } from 'utils/hooks/useGlobalFuncion';
@@ -10,6 +11,7 @@ export function Login(props: LoginProps) {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const { onLogin } = useGlobalFunctions();
+  const navigate = useNavigate();
   return (
     <LoginWrapper>
       <div className="login">
@@ -90,7 +92,7 @@ export function Login(props: LoginProps) {
               </div>
             </div>
             <div className="button d-flex flex-column">
-              <a className="--fogetpw" href="">
+              <a onClick={() => navigate('/forget')} className="--fogetpw">
                 Forgot password?
               </a>
               <button

@@ -534,6 +534,7 @@ a {
             align-items: center;
             border-radius: 50%;
             justify-content: center;
+            background-color: white;
 
             &.prevarrow {
                 margin-right: 8px;
@@ -2088,6 +2089,21 @@ a {
             .table-ticket {
                 overflow-y: auto;
 
+                .ant-table-thead {
+                    .ant-table-cell {
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 24px;
+                        font-family: var(--font-body);
+                        color: #181818;
+                        background: white;
+
+                        &::before {
+                            display: none;
+                        }
+                    }
+                }
+
                 .--item-ticket {
                     display: flex;
                     justify-content: space-between;
@@ -2172,6 +2188,8 @@ a {
             }
 
             .--bot {
+                margin-top: 14px;
+
                 .number-ticket {
                     border-radius: 6px;
                     height: 32px;

@@ -33,6 +33,7 @@ import { auth } from 'utils/helper';
 import { ProtectedRoute } from './component/ProtectedRoute';
 import { isLogged, selectNotifications } from './slice/selector';
 import { useDispatch, useSelector } from 'react-redux';
+import { ForgetPass } from '../ForgetPass/Loadable';
 // import { syncHistoryWithStore } from 'react-router-redux';
 
 setUpNotifications({
@@ -96,6 +97,14 @@ export function App() {
           element={
             <ProtectedRoute auth={!auth()} navigate={'/'}>
               <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/forget"
+          element={
+            <ProtectedRoute auth={!auth()} navigate={'/'}>
+              <ForgetPass />
             </ProtectedRoute>
           }
         />

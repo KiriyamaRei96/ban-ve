@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
-import { bg, date, search2, search3 } from 'asset/export';
+import { bg, date, search2, search3, vector } from 'asset/export';
 
 import {
   cartList,
@@ -52,31 +52,12 @@ const Tickets = (props: TicketsProps) => {
   return (
     <div className="--item">
       <div className="name-tab d-flex align-items-center">
-        {category &&
-          category.data.map((item: ParentCategoryDataType) => {
-            return (
-              <div
-                key={uuid()}
-                onClick={() => {
-                  dispatch(
-                    bookingActions.setSearch({
-                      parentCategoryIds: item.value,
-                    }),
-                  );
-                }}
-                className={
-                  category.currentValue == item.value
-                    ? '--item-tab --link fw-bold active'
-                    : '--item-tab --link fw-bold'
-                }
-              >
-                {item.name}
-              </div>
-            );
-          })}
-
-        {/* <div className="--item-tab --link fw-bold active">SIGNATURE SHOW</div> */}
+        <div className="--icon">
+          <img src={vector} alt="" />
+        </div>
+        <h6 className="fs-18 --name fw-bold mb-0">LOẠI SẢN PHẨM</h6>
       </div>
+
       <div className="tab-content">
         {/* <div className="--item-content">
           <div className="search-filter d-flex">

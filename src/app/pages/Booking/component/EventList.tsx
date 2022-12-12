@@ -1,40 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import BookingDate from './BookingDate';
 import { useDispatch, useSelector } from 'react-redux';
-import { calendar1 } from 'asset/export';
-import { eventList as list, search } from '../slice/selector';
+import { store } from 'asset/export';
+import { parentCategory as list, search } from '../slice/selector';
 import { bookingActions, GET_TICKETS } from '../slice';
 import moment from 'moment';
 export interface EventListProps {}
 
 const EventList = (props: EventListProps) => {
-  const eventList = useSelector(list);
+  const parentCategory = useSelector(list);
   const searchData = useSelector(search);
 
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState<any>(null);
 
   useEffect(() => {
-    if (searchData?.event && searchData?.date)
+    if (searchData?.parentCategoryIds && searchData?.date)
       dispatch(GET_TICKETS(searchData));
   }, [searchData]);
   return (
     <div className="--item d-flex flex-column">
       <div className="name-tab d-flex align-items-center">
         <div className="--icon">
-          <img src={calendar1.default} alt="" />
+          <img src={store} alt="" />
         </div>
-        <h6 className="fs-18 --name fw-bold mb-0">Event</h6>
+        <h6 className="fs-18 --name fw-bold mb-0">LOẠI SẢN PHẨM</h6>
       </div>
       <div className="tab-calendar d-flex flex-column justify-content-between">
         <div className="tab-bar">
-          {eventList.map(event => (
+          {parentCategory?.data.map(event => (
             <div
               onClick={() => {
                 dispatch(bookingActions.setSearch({ event: event.id }));
               }}
               className={
-                searchData?.event === event.id
+                searchData?.parentCategoryIds === event.id
                   ? '--item-tab-bar active'
                   : '--item-tab-bar'
               }

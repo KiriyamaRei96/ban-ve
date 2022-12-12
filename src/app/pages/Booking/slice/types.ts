@@ -69,7 +69,7 @@ export interface BookingState {
     performances?: PerformancesType;
   };
   search?: {
-    event?: number | string;
+    shows?: number | string;
     date?: string;
     parentCategoryIds?: number | string;
     performances?: number | string;
