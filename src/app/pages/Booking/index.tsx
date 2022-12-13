@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartMinus, clear, clear1, sent } from 'asset/export';
 import BookingDate from './component/BookingDate';
-import { isLogged } from '../App/slice/selector';
+import { currentPark, isLogged } from '../App/slice/selector';
 import EventList from './component/EventList';
 import Tickets from './component/Tickets';
 import Cart from './component/Cart';
-import { GET_EVENTS, useBookingSlice } from './slice';
+import { GET_EVENTS, GET_TICKETS, useBookingSlice } from './slice';
 
 export interface BookingProps {}
 export function Booking(props: BookingProps) {
@@ -14,11 +14,13 @@ export function Booking(props: BookingProps) {
 
   const dispatch = useDispatch();
   const isLoged = useSelector(isLogged);
+  const current = useSelector(currentPark);
+
   useEffect(() => {
     if (isLoged) {
-      dispatch(GET_EVENTS({ park: '143' }));
+      dispatch(GET_TICKETS({}));
     }
-  }, [isLoged]);
+  }, [isLoged, current]);
   return (
     <div className="--content">
       <div className="booking d-flex ">

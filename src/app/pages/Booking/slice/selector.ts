@@ -5,10 +5,6 @@ import { initialState } from '.';
 
 const bookingState = (state: RootState) => state.booking || initialState;
 
-export const eventList = createSelector(
-  [bookingState],
-  state => state.eventList,
-);
 export const loading = createSelector([bookingState], state => state.loading);
 export const search = createSelector([bookingState], state => state.search);
 export const ticketList = createSelector(
@@ -23,7 +19,10 @@ export const performances = createSelector(
   [bookingState],
   state => state.filter?.performances,
 );
-
+export const Shows = createSelector(
+  [bookingState],
+  state => state.filter?.shows,
+);
 export const startDate = createSelector(
   [bookingState],
   state => state.startDate,

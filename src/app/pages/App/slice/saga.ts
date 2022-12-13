@@ -1,14 +1,16 @@
 import { getUserInfoAPI, logOutAPI } from 'app/service/accountAPI';
 import { store } from 'index';
+import QueryString from 'qs';
 import { notify } from 'reapop';
 import { takeLatest, put, call } from 'redux-saga/effects';
 import { removeCookie } from 'utils/cookies';
 import { useGlobalFunctions } from 'utils/hooks/useGlobalFuncion';
 import { sunWorldToken } from 'utils/types/const';
 import { appActions, GET_USER_INFO, LOG_OUT } from '.';
-export function* getUserInfo() {
+export function* getUserInfo({ payload }) {
+  const param = QueryString.stringify(payload);
   try {
-    const { data } = yield call(getUserInfoAPI);
+    const { data } = yield call(getUserInfoAPI, param);
     yield put(GET_USER_INFO.success(data));
   } catch (err) {
     store.dispatch(

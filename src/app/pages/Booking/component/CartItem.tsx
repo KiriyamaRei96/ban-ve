@@ -6,6 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { numberWithCommas } from 'utils/helper';
 import { bookingActions } from '../slice';
 import { debounce } from 'lodash';
+import { search } from '../slice/selector';
 // const Input = ({ amount, setAmount }) => {
 //   return (
 //     <input
@@ -25,11 +26,12 @@ const CartItem = ({ item }) => {
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(item?.amount);
   const prvAmount = useRef(item?.amount);
+
   useEffect(() => {
     if (prvAmount.current !== amount && amount >= 1)
       dispatch(
         bookingActions.cartUpdateAmount({
-          id: item.id,
+          uid: item.uid,
           amount,
         }),
       );
@@ -48,7 +50,7 @@ const CartItem = ({ item }) => {
           <h6 className="fw-bold mb-0">{item?.name}</h6>
           <span className="fs-14 mt-1">09:30 AM - ZONE 2</span>
         </div>
-        <button onClick={() => deleteHandler(item?.id)} className="--clear">
+        <button onClick={() => deleteHandler(item?.uid)} className="--clear">
           <img src={clear.default} alt="" />
         </button>
       </div>

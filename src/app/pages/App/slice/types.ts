@@ -6,4 +6,6 @@ export interface AppState {
   error: boolean;
   isLogged: boolean;
   userInfo?: objectType;
+  currentPark?: number | string;
+  parkArr?: any[];
 }

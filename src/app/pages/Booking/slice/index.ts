@@ -9,7 +9,6 @@ export const GET_EVENTS = createRoutine('booking/getEvents');
 export const GET_TICKETS = createRoutine('booking/getTickers');
 
 export const initialState: BookingState = {
-  eventList: [],
   ticketList: [],
   cart: [],
   loading: false,
@@ -22,6 +21,9 @@ const slice = createSlice({
     setSearch: (state, action) => {
       state.search = { ...state.search, ...action.payload };
     },
+    clearSearch: state => {
+      state.search = {};
+    },
     setStartDate: (state, action) => {
       state.startDate = action.payload;
     },
@@ -29,14 +31,14 @@ const slice = createSlice({
       state.cart.push(action.payload);
     },
     cartDelete: (state, action) => {
-      state.cart = state.cart.filter(item => item.id !== action.payload);
+      state.cart = state.cart.filter(item => item.uid !== action.payload);
     },
     cartClear: state => {
       state.cart = [];
     },
     cartUpdateAmount: (state, action) => {
       state.cart = state.cart.map(item => {
-        if (item.id === action.payload.id) {
+        if (item.uid === action.payload.uid) {
           item.amount = action.payload.amount;
           return item;
         }
@@ -45,20 +47,20 @@ const slice = createSlice({
     },
   },
   extraReducers: {
-    [GET_EVENTS.TRIGGER]: state => {
-      state.loading = true;
-      state.error = false;
-    },
-    [GET_EVENTS.SUCCESS]: (state, actions: any) => {
-      state.eventList = actions.payload;
+    // [GET_EVENTS.TRIGGER]: state => {
+    //   state.loading = true;
+    //   state.error = false;
+    // },
+    // [GET_EVENTS.SUCCESS]: (state, actions: any) => {
+    //   state.eventList = actions.payload;
 
-      state.loading = false;
-      state.error = false;
-    },
-    [GET_EVENTS.FAILURE]: state => {
-      state.loading = false;
-      state.error = true;
-    },
+    //   state.loading = false;
+    //   state.error = false;
+    // },
+    // [GET_EVENTS.FAILURE]: state => {
+    //   state.loading = false;
+    //   state.error = true;
+    // },
     [GET_TICKETS.TRIGGER]: state => {
       state.loading = true;
       state.error = false;

@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { iconClock, sent } from 'asset/export';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { cartList } from 'app/pages/Booking/slice/selector';
 import { CartItemType } from 'app/pages/Booking/slice/types';
 import { numberWithCommas } from 'utils/helper';
 import { loading } from '../slice/selector';
 import { Spin } from 'antd';
+import Countdown from 'react-countdown';
+import { bookingActions } from 'app/pages/Booking/slice';
+import { appActions } from 'app/pages/App/slice';
+import { store } from 'index';
+import { notify } from 'reapop';
 
 const PayCard = ({ form }) => {
   const cart = useSelector(cartList);
   const isLoading = useSelector(loading);
   const [total, setTotal] = useState<number>(0);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     let totalPay = 0;
     cart.forEach((item, id) => {
@@ -29,20 +36,39 @@ const PayCard = ({ form }) => {
           <div className="--txt">
             <p>Thời gian thanh toán còn lại</p>
             <div className="--hour">
-              <div className="--number d-flex justify-content-between">
-                <div className="--item d-flex flex-column">
-                  <span>00</span>
-                  <span className="fs-12">Ngày</span>
-                </div>
-                <div className="--item d-flex flex-column">
-                  <span>00</span>
-                  <span className="fs-12">Giờ</span>
-                </div>
-                <div className="--item d-flex flex-column">
-                  <span>00</span>
-                  <span className="fs-12">Phút</span>
-                </div>
-              </div>
+              <Countdown
+                renderer={({ days, hours, minutes, seconds }) => {
+                  return (
+                    <div className="--number d-flex justify-content-between">
+                      <div className="--item d-flex flex-column">
+                        <span>{days > 10 ? days : `0${days}`}</span>
+                        <span className="fs-12">Ngày</span>
+                      </div>
+                      <div className="--item d-flex flex-column">
+                        <span>{hours > 10 ? hours : `0${hours}`}</span>
+                        <span className="fs-12">Giờ</span>
+                      </div>
+                      <div className="--item d-flex flex-column">
+                        <span>{minutes > 10 ? minutes : `0${minutes}`}</span>
+                        <span className="fs-12">Phút</span>
+                      </div>
+                    </div>
+                  );
+                }}
+                date={Date.now() + 900000}
+                onComplete={() => {
+                  dispatch(bookingActions.cartClear());
+                  dispatch(
+                    store.dispatch(
+                      notify('', 'warning', {
+                        title: 'Hết thời gian thanh toán',
+                        dismissAfter: 5000,
+                      }),
+                    ),
+                  );
+                  navigate('/');
+                }}
+              />
             </div>
           </div>
         </div>

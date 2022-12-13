@@ -33,6 +33,8 @@ const slice = createSlice({
     },
     [GET_USER_INFO.SUCCESS]: (state, actions: any) => {
       state.userInfo = actions.payload;
+      state.currentPark = actions.payload.park.id;
+      state.parkArr = actions.payload.agentParks;
       state.loading = false;
       state.error = false;
     },

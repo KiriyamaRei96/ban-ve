@@ -100,8 +100,8 @@ const InfoTicket = ({ res, loading = false }) => {
                       </a>
                     </p>
                     <p>
-                      <span>{item.name}</span>
-                      <span>09:30 AM - ZONE 2 - G1, G2</span>
+                      <span>{item.productName}</span>
+                      <span>{item.performance.timeFrom} - ZONE 2 - G1, G2</span>
                     </p>
                     <p>
                       <span>{data && numberWithCommas(item?.price)}đ</span>

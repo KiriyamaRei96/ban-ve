@@ -28,18 +28,22 @@ const EventList = (props: EventListProps) => {
       </div>
       <div className="tab-calendar d-flex flex-column justify-content-between">
         <div className="tab-bar">
-          {parentCategory?.data.map(event => (
+          {parentCategory?.data.map(parentCategoryIds => (
             <div
               onClick={() => {
-                dispatch(bookingActions.setSearch({ event: event.id }));
+                dispatch(
+                  bookingActions.setSearch({
+                    parentCategoryIds: parentCategoryIds.value,
+                  }),
+                );
               }}
               className={
-                searchData?.parentCategoryIds === event.id
+                searchData?.parentCategoryIds == parentCategoryIds.value
                   ? '--item-tab-bar active'
                   : '--item-tab-bar'
               }
             >
-              <span>{event.name || 'sự kiện'} </span>
+              <span>{parentCategoryIds.name || 'sự kiện'} </span>
               <i className="fa-solid fa-chevron-right"></i>
             </div>
           ))}

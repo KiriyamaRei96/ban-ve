@@ -1189,7 +1189,7 @@ a {
             }
 
             .tab-content {
-                background: #F1F1F1;
+
                 height: calc(100% - 65px);
 
                 overflow-y: auto;
@@ -1296,13 +1296,7 @@ a {
                             flex-direction: column;
                             padding: 0 20px;
 
-                            &.active {
-                                background-color: white;
-
-                                &>span {
-                                    color: var(--color-3);
-                                }
-                            }
+                            &.active {}
 
                             &>:first-child {
                                 padding-top: 8px;
@@ -1324,49 +1318,128 @@ a {
                             .--item {
                                 width: 100%;
                                 border: none;
+                                margin-bottom: 12px;
 
-                                &>* {
-                                    flex: 1;
+                                span {
+                                    font-weight: 400;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    border: 1px solid #C9C9C9;
+                                    border-radius: 100px;
+                                    padding: 2px 16px;
+                                    cursor: pointer;
+                                    margin-right: 6px;
+                                }
+
+                                span.active {
+                                    background: rgba(249, 178, 23, 0.1);
+                                    color: var(--color-3);
+
+                                    border: 1px solid #F9B217;
+                                    border-radius: 100px;
                                 }
 
 
                             }
 
                             .--input-group {
-                                padding: 8px 0;
+                                padding: 4px;
+                                background: #F2F2F2;
+                                border-radius: 6px;
+                                margin-bottom: 4px;
+                                position: relative;
+                                align-items: center;
 
                                 div {
-                                    display: inherit;
-                                    align-items: center;
-                                    width: 100%;
-                                    justify-content: space-between;
-                                    align-items: center;
+                                    display: flex;
+                                    flex: 1;
+                                    flex-direction: column;
 
+                                    .--name {
+                                        font-weight: 400;
+                                        font-size: 14px;
+                                        line-height: 20px;
+
+                                        color: #2C2C2C
+                                    }
+
+                                    .--price {
+                                        font-weight: 400;
+                                        font-size: 12px;
+                                        line-height: 16px;
+                                        /* identical to box height, or 133% */
+
+
+                                        /* Secondary */
+
+                                        color: #EA2127;
+                                    }
                                 }
 
                                 input[type=checkbox] {
 
+                                    position: absolute;
+                                    opacity: 0;
+                                    cursor: pointer;
+                                    height: 0;
+                                    width: 0;
 
 
+                                }
+
+                                input[type=checkbox]:checked {}
+
+                                .checkmark {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    border: 1px solid #ABABAB;
+                                    border-radius: 50%;
                                     height: 20px;
                                     width: 20px;
-                                    background: #FFFFFF;
+                                    margin-right: 10px;
 
-                                    border: 1px solid #D8D8D8;
-                                    border-radius: 4px;
                                 }
 
-                                input[type=checkbox]:checked {
-                                    accent-color: var(--color-3);
+                                /* On mouse-over, add a grey background color */
+                                &:hover input~.checkmark {
+                                    background-color: #ccc;
                                 }
 
-                                label {
-                                    height: 20px;
+                                /* When the checkbox is checked, add a blue background */
+                                input:checked~.checkmark {
+                                    background-color: var(--color-3);
+                                }
+
+                                /* Create the checkmark/indicator (hidden when not checked) */
+                                .checkmark:after {
+                                    content: "";
+                                    position: absolute;
+                                    display: none;
+                                }
+
+                                /* Show the checkmark when checked */
+                                input:checked~.checkmark:after {
+                                    display: block;
+                                }
+
+                                /* Style the checkmark/indicator */
+                                .checkmark:after {
+
+
+
+                                    width: 5px;
+                                    height: 10px;
+                                    border: solid white;
+                                    border-width: 0 3px 3px 0;
+                                    -webkit-transform: rotate(45deg);
+                                    -ms-transform: rotate(45deg);
+                                    transform: rotate(45deg);
                                 }
 
 
                                 line-height: 20px;
-                                justify-content: space-between;
+
                             }
 
                             // margin-right: 20px;

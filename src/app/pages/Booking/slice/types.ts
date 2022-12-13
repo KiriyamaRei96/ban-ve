@@ -20,6 +20,7 @@ export interface CartItemType extends I_Object {
   date: string | undefined;
   price: number | null;
   performance: string | number | null | undefined;
+  uid: string | null;
 }
 export interface ParentCategoryDataType {
   name: string | number | null;
@@ -29,6 +30,8 @@ export interface ParentCategoryDataType {
 export interface PerformancesJsonType extends I_Object {
   quantityFree: number;
   quantityMax: number;
+  timeFrom: string | number | null;
+  timeTo: string | number | null;
   dateFrom: {
     date: string;
     datetime: string;
@@ -43,6 +46,24 @@ export interface PerformancesDataType {
   count: string | number | null;
   json: PerformancesJsonType;
 }
+export interface ShowJsonType extends I_Object {
+  description: string | null;
+  link: string | null;
+  image: string | null;
+  dateFrom: {
+    date: string;
+    datetime: string;
+  };
+  dateTo: {
+    date: string;
+    datetime: string;
+  };
+}
+export interface ShowDataType {
+  value: string | number | null;
+  count: string | number | null;
+  json: ShowJsonType;
+}
 export interface FitlterItemsType {
   label: string | number | null;
   type: string | number | null;
@@ -56,9 +77,10 @@ export interface ParentCategoryType extends FitlterItemsType {
 export interface PerformancesType extends FitlterItemsType {
   data: [PerformancesDataType] | any[];
 }
-
+export interface ShowsType extends FitlterItemsType {
+  data: [ShowDataType] | any[];
+}
 export interface BookingState {
-  eventList: [I_Object] | [];
   ticketList: [TicketsType] | [];
   cart: [CartItemType] | any[];
   loading: boolean;
@@ -67,6 +89,7 @@ export interface BookingState {
   filter?: {
     parentCategoryIds?: ParentCategoryType;
     performances?: PerformancesType;
+    shows?: ShowsType;
   };
   search?: {
     shows?: number | string;
