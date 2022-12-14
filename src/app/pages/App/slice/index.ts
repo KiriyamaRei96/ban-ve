@@ -5,6 +5,8 @@ import { AppState } from './types';
 import { createRoutine } from 'redux-saga-routines';
 
 export const GET_USER_INFO = createRoutine('app/getUserInfo');
+export const GET_NOITY = createRoutine('app/gotNoity');
+
 export const LOG_OUT = createRoutine('app/logOut');
 
 export const initialState: AppState = {
@@ -39,6 +41,19 @@ const slice = createSlice({
       state.error = false;
     },
     [GET_USER_INFO.FAILURE]: state => {
+      state.loading = false;
+      state.error = true;
+    },
+    [GET_NOITY.TRIGGER]: state => {
+      state.loading = true;
+      state.error = false;
+    },
+    [GET_NOITY.SUCCESS]: (state, actions: any) => {
+      state.NoityArr = actions.payload;
+      state.loading = false;
+      state.error = false;
+    },
+    [GET_NOITY.FAILURE]: state => {
       state.loading = false;
       state.error = true;
     },

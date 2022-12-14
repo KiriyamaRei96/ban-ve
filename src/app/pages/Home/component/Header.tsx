@@ -1,7 +1,8 @@
 import React from 'react';
-import { bg, comboShape, en, noti, notification, vn } from 'asset/export';
+import { comboShape, en, vn } from 'asset/export';
 import { useNavigate } from 'react-router-dom';
 import HeaderAvatar from './HeaderAvatar';
+import Noity from './Noity';
 export interface HeaderProps {}
 
 const Header = (props: HeaderProps) => {
@@ -13,140 +14,7 @@ const Header = (props: HeaderProps) => {
         <h4 className="text-white --name fw-bold mb-0">Sun World Phu Quoc</h4>
       </div>
       <div className="--info d-flex align-items-center">
-        <div className="notification">
-          <img src={noti.default} alt="" />
-          <span className="--number fs-14 text-white">3</span>
-          <div className="tab-notifi ">
-            <div className="list-notifi ">
-              <div className="--item-notifi">
-                <div className="--icon">
-                  <img src={notification.default} alt="" />
-                </div>
-                <div className="--txt">
-                  <h6 className="mb-0">
-                    Thanh toán thành công đơn hàng{' '}
-                    <a href="" className="fw-bold">
-                      #13232
-                    </a>
-                  </h6>
-                  <div className="--time fs-12">28/11/2022 09:30</div>
-                </div>
-              </div>
-              <div className="--item-notifi">
-                <div className="--icon">
-                  <img src={notification.default} alt="" />
-                </div>
-                <div className="--txt">
-                  <h6 className="mb-0">
-                    Thanh toán thành công đơn hàng{' '}
-                    <a href="" className="fw-bold">
-                      #13232
-                    </a>
-                  </h6>
-                  <div className="--time fs-12">28/11/2022 09:30</div>
-                </div>
-              </div>
-              <div className="--item-notifi">
-                <div className="--icon">
-                  <img src={notification.default} alt="" />
-                </div>
-                <div className="--txt">
-                  <h6 className="mb-0">
-                    Thanh toán thành công đơn hàng{' '}
-                    <a href="" className="fw-bold">
-                      #13232
-                    </a>
-                  </h6>
-                  <div className="--time fs-12">28/11/2022 09:30</div>
-                </div>
-              </div>
-              <div className="--item-notifi">
-                <div className="--icon">
-                  <img src={notification.default} alt="" />
-                </div>
-                <div className="--txt">
-                  <h6 className="mb-0">
-                    Thanh toán thành công đơn hàng{' '}
-                    <a href="" className="fw-bold">
-                      #13232
-                    </a>
-                  </h6>
-                  <div className="--time fs-12">28/11/2022 09:30</div>
-                </div>
-              </div>
-              <div className="--item-notifi">
-                <div className="--icon">
-                  <img src={notification.default} alt="" />
-                </div>
-                <div className="--txt">
-                  <h6 className="mb-0">
-                    Thanh toán thành công đơn hàng{' '}
-                    <a href="" className="fw-bold">
-                      #13232
-                    </a>
-                  </h6>
-                  <div className="--time fs-12">28/11/2022 09:30</div>
-                </div>
-              </div>
-              <div className="--item-notifi">
-                <div className="--icon">
-                  <img src={notification.default} alt="" />
-                </div>
-                <div className="--txt">
-                  <h6 className="mb-0">
-                    Thanh toán thành công đơn hàng{' '}
-                    <a href="" className="fw-bold">
-                      #13232
-                    </a>
-                  </h6>
-                  <div className="--time fs-12">28/11/2022 09:30</div>
-                </div>
-              </div>
-              <div className="--item-notifi">
-                <div className="--icon">
-                  <img src={notification.default} alt="" />
-                </div>
-                <div className="--txt">
-                  <h6 className="mb-0">
-                    Thanh toán thành công đơn hàng{' '}
-                    <a href="" className="fw-bold">
-                      #13232
-                    </a>
-                  </h6>
-                  <div className="--time fs-12">28/11/2022 09:30</div>
-                </div>
-              </div>
-              <div className="--item-notifi">
-                <div className="--icon">
-                  <img src={notification.default} alt="" />
-                </div>
-                <div className="--txt">
-                  <h6 className="mb-0">
-                    Thanh toán thành công đơn hàng{' '}
-                    <a href="" className="fw-bold">
-                      #13232
-                    </a>
-                  </h6>
-                  <div className="--time fs-12">28/11/2022 09:30</div>
-                </div>
-              </div>
-              <div className="--item-notifi">
-                <div className="--icon">
-                  <img src={notification.default} alt="" />
-                </div>
-                <div className="--txt">
-                  <h6 className="mb-0">
-                    Thanh toán thành công đơn hàng{' '}
-                    <a href="" className="fw-bold">
-                      #13232
-                    </a>
-                  </h6>
-                  <div className="--time fs-12">28/11/2022 09:30</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Noity />
         <HeaderAvatar />
         <div className="language d-flex align-items-center">
           <img src={vn.default} alt="" />

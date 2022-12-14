@@ -1,14 +1,6 @@
-import {
-    createGlobalStyle
-}
+import { createGlobalStyle } from 'styled-components';
 
-from 'styled-components';
-
-import {
-    StyleConstants
-}
-
-from './StyleConstants';
+import { StyleConstants } from './StyleConstants';
 import sunWorldBold from '../fonts/SunWorld-Bold.eot';
 import sunWorldBold2 from '../fonts/SunWorld-Bold.eot?#iefix';
 import sunWorldBold3 from '../fonts/SunWorld-Bold.woff2';
@@ -51,7 +43,7 @@ import sunWorldHeavy4 from '../fonts/SunWorld-Heavy.woff';
 import sunWorldHeavy5 from '../fonts/SunWorld-Heavy.ttf';
 import sunWorldHeavy6 from '../fonts/SunWorld-Heavy.svg';
 
-export const GlobalStyle=createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 /* html,
   body {
     height: 100%;
@@ -829,12 +821,12 @@ a {
                     position: absolute;
                     background: #FFF;
                     border-radius: 8px;
-                    padding-right: 1rem;
                     box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.05);
                     left: 50%;
                     transform: translate(-50%, 0);
                     pointer-events: none;
                     opacity: 0;
+                    overflow:hidden;
 
                     &.active {
                         opacity: 1;
