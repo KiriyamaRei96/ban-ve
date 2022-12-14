@@ -2,12 +2,17 @@ import React, { useRef } from 'react';
 import { v4 as uuid } from 'uuid';
 import { email, prin, qr } from 'asset/export';
 import Slider from 'react-slick';
-export function ModalContent({ modalData }) {
+export function ModalContent({ modalData, close }) {
   const slider = useRef<any>(null);
   return (
     <>
       <div className="modal-content">
-        <button type="button" className="close" data-bs-dismiss="modal">
+        <button
+          onClick={() => close()}
+          type="button"
+          className="close"
+          data-bs-dismiss="modal"
+        >
           <i className="fa-solid fa-xmark"></i>
         </button>
         <div className="modal-body">

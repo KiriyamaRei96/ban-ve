@@ -40,7 +40,7 @@ const InfoTicket = ({ res, loading = false }) => {
                 </li>
                 <li>
                   <span>Flags</span>
-                  <span>A____</span>
+                  <span>{data?.flags}</span>
                 </li>
                 <li>
                   <span>Status</span>
@@ -66,7 +66,7 @@ const InfoTicket = ({ res, loading = false }) => {
                 </li>
                 <li>
                   <span>Facility</span>
-                  <span>Sun World Hòn Thơm Nature Park</span>
+                  <span>{data?.agent.park.name}</span>
                 </li>
                 <li>
                   <span>Visit date</span>
@@ -74,7 +74,7 @@ const InfoTicket = ({ res, loading = false }) => {
                 </li>
                 <li>
                   <span>Total</span>
-                  <span>3 items</span>
+                  <span>{data?.items.length}</span>
                 </li>
               </ul>
             </div>
@@ -100,8 +100,10 @@ const InfoTicket = ({ res, loading = false }) => {
                       </a>
                     </p>
                     <p>
-                      <span>{item.productName}</span>
-                      <span>{item.performance.timeFrom} - ZONE 2 - G1, G2</span>
+                      <span>{item?.productName}</span>
+                      <span>
+                        {item?.performance?.timeFrom} - ZONE 2 - G1, G2
+                      </span>
                     </p>
                     <p>
                       <span>{data && numberWithCommas(item?.price)}đ</span>
@@ -198,7 +200,7 @@ const InfoTicket = ({ res, loading = false }) => {
         onHide={onCloseDialog}
       >
         <Modal.Body className="d-flex p-0">
-          <ModalContent modalData={modalData} />
+          <ModalContent close={onCloseDialog} modalData={modalData} />
         </Modal.Body>
       </Modal>
     </>

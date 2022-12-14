@@ -1997,6 +1997,12 @@ a {
 
             .info-accounuser {
                 .--top {
+                    .btn-wrapper {
+                        &>:first-child {
+                            margin-right: 8px;
+                        }
+                    }
+
                     button {
                         background: #F2F2F2;
                         border-radius: 5px;
@@ -2066,6 +2072,7 @@ a {
                             border-radius: 4px;
                             height: 44px;
                             padding: 0 12px;
+                            width: 100%;
 
                             &::placeholder {
                                 color: #B1B1B1;
@@ -2082,13 +2089,7 @@ a {
                         }
                     }
 
-                    .--item-account {
-                        &:nth-child(1) {
-                            margin-bottom: 2rem;
-                            padding-bottom: 2rem;
-                            border-bottom: 1px dashed #C9C9C9;
-                        }
-                    }
+                    .--item-account {}
                 }
             }
         }

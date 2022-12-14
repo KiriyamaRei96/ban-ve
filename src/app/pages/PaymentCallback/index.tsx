@@ -3,25 +3,34 @@ import Confrim from './component/ConFirm';
 import OrderDetail from './component/OrderDetail';
 import { useSelector, useDispatch } from 'react-redux';
 import { response } from '../CheckOut/slice/selector';
-import { useParams } from 'react-router-dom';
 import { checkOutActions } from '../CheckOut/slice';
 import { useLocation } from 'react-router-dom';
-import { ResponseType } from '../CheckOut/slice/types';
+import { BaseXHR } from 'utils/axios';
+import Failed from './component/Failed';
 export interface PaymentCallbackProps {}
 
 export function PaymentCallback(props: PaymentCallbackProps) {
   const responseInfo = useSelector(response);
   const [data, setData] = useState<any>(null);
-  const param = useParams();
+  const [success, setSuccess] = useState<any>(undefined);
+
   const location = useLocation();
   const dispacth = useDispatch();
   useEffect(() => {
     dispacth(checkOutActions.setIsOrder());
     if (responseInfo) {
       setData(responseInfo);
+      setSuccess(undefined);
     }
     if (!responseInfo) {
-      console.log(location);
+      const getData = async () => {
+        const { data } = await BaseXHR.$get(
+          '/vi/api/b2b/v1/payment/callback' + location.search,
+        );
+        setData(data.order);
+        setSuccess(data.success);
+      };
+      getData().catch(err => console.log(err));
     }
   }, [responseInfo, location]);
 
@@ -29,14 +38,15 @@ export function PaymentCallback(props: PaymentCallbackProps) {
     <>
       <div className="--content">
         <div className="confirmpay ">
-          {data && (
+          {success === false && <Failed />}
+          {success !== false && data && (
             <Confrim
-              id={responseInfo?.id}
-              orderState={responseInfo?.orderState}
-              payment={responseInfo?.payment}
+              id={data?.id}
+              orderState={data?.orderState}
+              payment={data?.payment}
             />
           )}
-          {data && <OrderDetail res={responseInfo} />}
+          {success !== false && data && <OrderDetail res={data} />}
         </div>
       </div>
     </>

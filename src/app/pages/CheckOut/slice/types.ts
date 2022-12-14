@@ -20,11 +20,13 @@ export interface Seats {
 export interface Agent extends I_Object {
   address: string | number | null;
   phone: string | number | null;
+  park: any;
 }
 export interface ResponseType {
   id: number | undefined;
   ordernumber: string;
   totalPrice: number;
+  flags: string | null;
   orderdate: {
     date: string;
     datetime: string;
