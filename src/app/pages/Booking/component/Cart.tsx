@@ -8,12 +8,15 @@ import { numberWithCommas } from 'utils/helper';
 import { CartItemType } from '../slice/types';
 import { bookingActions } from '../slice';
 import CartItem from './CartItem';
+import { Empty } from 'antd';
 
 export interface CartProps {}
 
 const Cart = (props: CartProps) => {
   const cart = useSelector(cartList);
   const [total, setTotal] = useState<number>(0);
+  const [totalTickets, setTotalTickets] = useState<number>(0);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -21,7 +24,12 @@ const Cart = (props: CartProps) => {
     cart.forEach((item, id) => {
       totalPay += item.price * item.amount;
     });
+    let totalTickets = 0;
+    cart.forEach((item: CartItemType, id) => {
+      totalTickets += item.amount;
+    });
     setTotal(totalPay);
+    setTotalTickets(totalTickets);
   }, [cart]);
 
   const clearHandler = () => {
@@ -33,24 +41,26 @@ const Cart = (props: CartProps) => {
         <div className="--icon">
           <img src={cartMinus.default} alt="" />
         </div>
-        <h6 className="fs-18 --name fw-bold mb-0">Cart</h6>
+        <h6 className="fs-18 --name fw-bold mb-0">Cart ({cart.length})</h6>
       </div>
       <div className="order d-flex flex-column justify-content-between">
         <div className="list-order">
           {cart.map((item: CartItemType) => (
             <CartItem key={uuid()} item={item} />
           ))}
+          {cart.length === 0 && <Empty description="Empty" />}
         </div>
         <div className="card-order d-flex flex-column justify-content-center">
           <div className="billplease">
             <div className="--item-bill d-flex justify-content-between align-items-center">
+              <span>Total tickets</span>
+              <span className="--money">{totalTickets}</span>
+            </div>
+            <div className="--item-bill d-flex justify-content-between align-items-center">
               <span>Amount due</span>
               <span className="--money">{numberWithCommas(total)}đ</span>
             </div>
-            <div className="--item-bill d-flex justify-content-between align-items-center">
-              <span>Amount paid</span>
-              <span className="--money">0đ</span>
-            </div>
+
             <div className="--item-bill d-flex justify-content-between align-items-center">
               <span>Amount Remaining</span>
               <span className="--money">{numberWithCommas(total)}đ</span>

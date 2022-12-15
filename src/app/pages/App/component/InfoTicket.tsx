@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { numberWithCommas } from 'utils/helper';
+import { numberWithCommas, paymentStateMap } from 'utils/helper';
 import { Form } from 'antd';
 import { eyeScanner } from 'asset/export';
 import { ResponseType } from 'app/pages/CheckOut/slice/types';
@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 // import { Modal } from './Modal';
 import Modal from 'react-bootstrap/Modal';
 import { ModalContent } from './Modal';
-const InfoTicket = ({ res, loading = false }) => {
+const InfoTicket = ({ res, readOnly = true }) => {
   const data: ResponseType = res;
   const [isShow, setIsShow] = useState(false);
   const [modalData, setModalData] = useState(null);
@@ -36,7 +36,7 @@ const InfoTicket = ({ res, loading = false }) => {
               <ul>
                 <li>
                   <span>PNR</span>
-                  <span>#{data?.id}</span>
+                  <span>#{data?.ordernumber}</span>
                 </li>
                 <li>
                   <span>Flags</span>
@@ -44,7 +44,11 @@ const InfoTicket = ({ res, loading = false }) => {
                 </li>
                 <li>
                   <span>Status</span>
-                  <span>Pending</span>
+                  <span
+                    style={{ color: paymentStateMap[data?.orderState.value] }}
+                  >
+                    {data?.orderState.name}
+                  </span>
                 </li>
                 <li>
                   <span>Sale Chanel</span>
@@ -90,14 +94,12 @@ const InfoTicket = ({ res, loading = false }) => {
                 data?.items.map(item => (
                   <div key={uuid()} className="--item-tableticket">
                     <p>
-                      <a
-                        className=""
-                        data-bs-toggle="modal"
+                      <button
+                        disabled={item.tickets.length === 0}
                         onClick={() => viewHandler(item)}
-                        role="button"
                       >
                         <img src={eyeScanner.default} alt="" />
-                      </a>
+                      </button>
                     </p>
                     <p>
                       <span>{item?.productName}</span>
@@ -145,7 +147,7 @@ const InfoTicket = ({ res, loading = false }) => {
                     Tour Operator Name{' '}
                   </label>
                   <Form.Item name="tourOperatorName">
-                    <input type="text" />
+                    <input readOnly={readOnly} type="text" />
                   </Form.Item>
                 </div>
                 <div className="form-group d-flex flex-column">
@@ -153,7 +155,7 @@ const InfoTicket = ({ res, loading = false }) => {
                     Tour Guide Name
                   </label>
                   <Form.Item name="tourGuideName">
-                    <input type="text" />
+                    <input readOnly={readOnly} type="text" />
                   </Form.Item>
                 </div>
                 <div className="form-group d-flex flex-column">
@@ -161,7 +163,7 @@ const InfoTicket = ({ res, loading = false }) => {
                     Tour Guide Mobile
                   </label>
                   <Form.Item name="tourGuideMobile">
-                    <input type="text" />
+                    <input readOnly={readOnly} type="text" />
                   </Form.Item>
                 </div>
                 <div className="form-group d-flex flex-column">
@@ -169,7 +171,7 @@ const InfoTicket = ({ res, loading = false }) => {
                     Group code
                   </label>
                   <Form.Item name="tourGroupCode">
-                    <input type="text" />
+                    <input readOnly={readOnly} type="text" />
                   </Form.Item>
                 </div>
                 <div className="form-group d-flex flex-column">
@@ -177,7 +179,7 @@ const InfoTicket = ({ res, loading = false }) => {
                     Nationality
                   </label>
                   <Form.Item name="tourNation">
-                    <input type="text" />
+                    <input readOnly={readOnly} type="text" />
                   </Form.Item>
                 </div>
                 <div className="form-group d-flex flex-column">
@@ -185,7 +187,7 @@ const InfoTicket = ({ res, loading = false }) => {
                     Note
                   </label>
                   <Form.Item name="tourNotes">
-                    <input type="text" />
+                    <input readOnly={readOnly} type="text" />
                   </Form.Item>
                 </div>
               </Form>

@@ -50,17 +50,17 @@ const Left = (props: LeftProps) => {
                   <a
                     key={uuid()}
                     onClick={() => {
-                      dispatch(GET_USER_INFO({ park: item.park.id }));
+                      dispatch(GET_USER_INFO({ park: item?.park?.id }));
                       dispatch(bookingActions.cartClear());
                       dispatch(bookingActions.clearSearch());
                     }}
                     className={
-                      current == item.park.id
+                      current == item?.park?.id
                         ? '--item-sub text-white fs-14 active'
                         : '--item-sub text-white fs-14 '
                     }
                   >
-                    <span>{item.park.name}</span>
+                    <span>{item?.park?.name}</span>
                     <i className="fa-solid fa-check"></i>
                   </a>
                 ))}
@@ -91,7 +91,7 @@ const Left = (props: LeftProps) => {
               </div>
             </div>
           </div>
-          <div className="card">
+          {/* <div className="card">
             <div className="card-header p-0" id="headingTwo">
               <button
                 className="btn d-flex justify-content-between text-white collapsed"
@@ -104,50 +104,8 @@ const Left = (props: LeftProps) => {
                 <i className="fa-solid fa-caret-down"></i>
               </button>
             </div>
-            {/* <div
-              id="collapseTwo"
-              className="collapse mt-2"
-              aria-labelledby="headingTwo"
-              data-bs-parent="#accordion"
-            >
-              <div className="--sub-menu d-flex flex-column">
-                <a href="" className="--item-sub text-white fs-14 active">
-                  <span>Sun World Ba Na Hills</span>
-                  <i className="fa-solid fa-check"></i>
-                </a>
-                <a href="" className="--item-sub text-white fs-14">
-                  <span>Sun World Ba Na Hills</span>
-                  <i className="fa-solid fa-check"></i>
-                </a>
-                <a href="" className="--item-sub text-white fs-14">
-                  <span>Sun World Ba Na Hills</span>
-                  <i className="fa-solid fa-check"></i>
-                </a>
-                <a href="" className="--item-sub text-white fs-14">
-                  <span>Sun World Ba Na Hills</span>
-                  <i className="fa-solid fa-check"></i>
-                </a>
-                <a href="" className="--item-sub text-white fs-14">
-                  <span>Sun World Ba Na Hills</span>
-                  <i className="fa-solid fa-check"></i>
-                </a>
-                <a href="" className="--item-sub text-white fs-14">
-                  <span>Sun World Ba Na Hills</span>
-                  <i className="fa-solid fa-check"></i>
-                </a>
-              </div>
-            </div>
-            <div className="--tab mt-3">
-              <div className="--item-tab --link">
-                <img src={calendarCheck.default} alt="" />
-                <h6 className="fs-18 text-white mb-0">Booking</h6>
-              </div>
-              <div className="--item-tab --link">
-                <img src={ticket.default} alt="" />
-                <h6 className="fs-18 text-white mb-0">My Order</h6>
-              </div>
-            </div> */}
-          </div>
+        
+          </div> */}
         </div>
         <div className="cards d-flex flex-column justify-content-between">
           <img src={mask.default} alt="" />

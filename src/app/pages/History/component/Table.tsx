@@ -2,7 +2,7 @@ import React from 'react';
 import { clear, eyeScanner, mobilePayment, refresh } from 'asset/export';
 import { ResponseType } from '../slice/types';
 import { v4 as uuid } from 'uuid';
-import { numberWithCommas } from 'utils/helper';
+import { numberWithCommas, paymentStateMap } from 'utils/helper';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loading } from '../slice/selector';
@@ -15,14 +15,14 @@ const Table = ({ historyList }) => {
   const column: ColumnsType<ResponseType> = [
     {
       title: 'PNR',
-      dataIndex: 'id',
-      key: 'id',
+      dataIndex: 'ordernumber',
+      key: 'ordernumber',
       render: (_, record) => (
         <div
           onClick={() => navigate(`/History/${record.id}`)}
           className="--name-ticket"
         >
-          #{record?.id}
+          #{record?.ordernumber}
         </div>
       ),
     },
@@ -36,9 +36,11 @@ const Table = ({ historyList }) => {
     },
     {
       title: 'Flags',
-      dataIndex: 'flag',
-      key: 'flag',
-      render: (_, record) => <div className="--flag-ticket">A___</div>,
+      dataIndex: 'flags',
+      key: 'flags',
+      render: (_, record) => (
+        <div className="--flag-ticket">{record?.flags}</div>
+      ),
     },
     {
       title: 'Status',
@@ -46,11 +48,12 @@ const Table = ({ historyList }) => {
       key: 'orderState',
       render: (_, record) => (
         <div className="--status-ticket   ">
-          <p className="mb-0 --item active">
-            {record?.orderState?.replace('orderstate.status.', '')}
+          <p
+            style={{ background: paymentStateMap[record?.orderState.value] }}
+            className={`mb-0 --item`}
+          >
+            {record?.orderState.name}
           </p>
-          {/* <p className="mb-0 --item inactive">Pending</p>
-<p className="mb-0 --item default">Done</p> */}
         </div>
       ),
     },
@@ -60,8 +63,8 @@ const Table = ({ historyList }) => {
       key: 'payment',
       render: (_, record) => (
         <div className="--pay-ticket">
-          <p className="mb-0 --item active">
-            <img src={mobilePayment.default} alt="" />
+          <p className="mb-0 --item ">
+            <img src={record?.payment?.image.original} alt="" />
             <span>{record?.payment?.code}</span>
           </p>
         </div>
@@ -71,7 +74,9 @@ const Table = ({ historyList }) => {
       title: 'Quantity',
       dataIndex: 'quantity',
       key: 'quantity',
-      render: (_, record) => <div className="--qua-ticket">200</div>,
+      render: (_, record) => (
+        <div className="--qua-ticket">{record?.items.length}</div>
+      ),
     },
     {
       title: 'Amount paid',

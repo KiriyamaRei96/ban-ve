@@ -1,6 +1,14 @@
-import { createGlobalStyle } from 'styled-components';
+import {
+    createGlobalStyle
+}
 
-import { StyleConstants } from './StyleConstants';
+from 'styled-components';
+
+import {
+    StyleConstants
+}
+
+from './StyleConstants';
 import sunWorldBold from '../fonts/SunWorld-Bold.eot';
 import sunWorldBold2 from '../fonts/SunWorld-Bold.eot?#iefix';
 import sunWorldBold3 from '../fonts/SunWorld-Bold.woff2';
@@ -43,7 +51,7 @@ import sunWorldHeavy4 from '../fonts/SunWorld-Heavy.woff';
 import sunWorldHeavy5 from '../fonts/SunWorld-Heavy.ttf';
 import sunWorldHeavy6 from '../fonts/SunWorld-Heavy.svg';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle=createGlobalStyle`
 /* html,
   body {
     height: 100%;
@@ -302,6 +310,7 @@ a {
                 font-family: var(--font-sunbold);
                 padding: 0 0 20px;
                 font-size: 14px;
+
             }
 
             &:nth-child(n+2) {
@@ -327,7 +336,14 @@ a {
 
                 &:nth-child(1) {
                     width: 7%;
+                    align-items: center;
+                    justify-content: center;
 
+                    button {
+                        background: none;
+                        border: none;
+                        width: fit-content;
+                    }
                 }
 
                 &:nth-child(2) {
@@ -399,6 +415,7 @@ a {
             border: 1px solid #E7E7E7;
             border-radius: 4px;
             height: 32px;
+            padding: 0 8px;
 
             &:focus {
                 outline: none;
@@ -826,7 +843,7 @@ a {
                     transform: translate(-50%, 0);
                     pointer-events: none;
                     opacity: 0;
-                    overflow:hidden;
+                    overflow: hidden;
 
                     &.active {
                         opacity: 1;
@@ -1132,6 +1149,7 @@ a {
                 .--money {
                     color: var(--color-4);
                     width: 90px;
+                    text-align: end;
                 }
 
                 .--name {
@@ -1615,6 +1633,12 @@ a {
                         font-size: 14px;
                         font-family: var(--font-sunbold);
                         margin-bottom: 4px;
+
+                        &:first-child {
+                            span {
+                                color: red;
+                            }
+                        }
                     }
 
                     select {
@@ -1672,6 +1696,12 @@ a {
                         padding-left: 0;
                         margin-bottom: 0;
                         display: flex;
+
+                        img {
+                            height: 32px;
+                            width: 32px;
+                            object-fit: cover;
+                        }
 
                         .--pay {
                             display: flex;
@@ -1990,8 +2020,8 @@ a {
             .info-accounuser {
                 .--top {
                     .btn-wrapper {
-                        &>:first-child {
-                            margin-right: 8px;
+                        &>:last-child {
+                            margin-left: 8px;
                         }
                     }
 
@@ -2179,6 +2209,7 @@ a {
 
                 .--name-ticket {
                     color: #5969FD;
+                    cursor: pointer;
                 }
 
                 .--flag-ticket {
@@ -2220,6 +2251,13 @@ a {
                     .--item {
                         display: flex;
                         align-items: center;
+
+                        img {
+                            height: 20px;
+                            width: 20px;
+                            object-fit: cover;
+                            margin-right: 8px;
+                        }
 
                         span {
                             line-height: 1;
@@ -2276,11 +2314,6 @@ a {
         }
     }
 }
-
-
-
-
-
 
 
 

@@ -1,24 +1,26 @@
 import React from 'react';
-import { flatColor, checked } from 'asset/export';
+import { flatColor, checked, Pending } from 'asset/export';
 import { useNavigate } from 'react-router-dom';
 const Confrim = ({ id, orderState, payment }) => {
   const navigate = useNavigate();
+  const stateMap = {
+    success: {
+      img: flatColor.default,
+      text: 'Thanh toán thành công!',
+      color: '#5C9A45',
+    },
+    paymentPending: { img: Pending, text: 'Chờ xử lý!', color: '#FF6B00' },
+  };
   return (
     <div className="confirm">
       <div className="--icon">
-        <img
-          src={
-            orderState === 'orderstate.status.success'
-              ? flatColor.default
-              : checked
-          }
-          alt=""
-        />
+        <img src={stateMap[orderState.value].img} alt="" />
       </div>
-      <h4 className="fw-bold mt-1">
-        {orderState === 'orderstate.status.success'
-          ? ' Thanh toán thành công!'
-          : 'Tạo đơn thành công!'}
+      <h4
+        style={{ color: stateMap[orderState.value].color }}
+        className="fw-bold mt-1"
+      >
+        {stateMap[orderState.value].text}
       </h4>
       <article
         dangerouslySetInnerHTML={{ __html: payment.description }}

@@ -26,11 +26,16 @@ export interface ResponseType {
   id: number | undefined;
   ordernumber: string;
   totalPrice: number;
+  items: any[];
   orderdate: {
     date: string;
     datetime: string;
   };
-  orderState: string;
+  orderState: {
+    name: string;
+    value: string;
+  };
+  flags: string;
   payment: PaymentMethod;
   seats: [Seats] | [];
   tourOperatorName: string | number | null;

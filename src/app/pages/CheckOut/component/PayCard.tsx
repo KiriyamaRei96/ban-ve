@@ -41,16 +41,16 @@ const PayCard = ({ form }) => {
                   return (
                     <div className="--number d-flex justify-content-between">
                       <div className="--item d-flex flex-column">
-                        <span>{days > 10 ? days : `0${days}`}</span>
-                        <span className="fs-12">Ngày</span>
-                      </div>
-                      <div className="--item d-flex flex-column">
-                        <span>{hours > 10 ? hours : `0${hours}`}</span>
+                        <span>{hours >= 10 ? hours : `0${hours}`}</span>
                         <span className="fs-12">Giờ</span>
                       </div>
                       <div className="--item d-flex flex-column">
-                        <span>{minutes > 10 ? minutes : `0${minutes}`}</span>
+                        <span>{minutes >= 10 ? minutes : `0${minutes}`}</span>
                         <span className="fs-12">Phút</span>
+                      </div>
+                      <div className="--item d-flex flex-column">
+                        <span>{seconds >= 10 ? seconds : `0${seconds}`}</span>
+                        <span className="fs-12">Giây</span>
                       </div>
                     </div>
                   );

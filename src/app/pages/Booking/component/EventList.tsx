@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import BookingDate from './BookingDate';
 import { useDispatch, useSelector } from 'react-redux';
-import { store } from 'asset/export';
+import { date, store } from 'asset/export';
 import { parentCategory as list, search } from '../slice/selector';
 import { bookingActions, GET_TICKETS } from '../slice';
 import moment from 'moment';
+import { Empty } from 'antd';
 export interface EventListProps {}
 
 const EventList = (props: EventListProps) => {
@@ -47,12 +48,15 @@ const EventList = (props: EventListProps) => {
               <i className="fa-solid fa-chevron-right"></i>
             </div>
           ))}
-          {/* <div className="--item-tab-bar active">
-            <span> Hòn Thơm Nature Park </span>
-            <i className="fa-solid fa-chevron-right"></i>
-          </div> */}
+          {!parentCategory?.data && <Empty description="Empty" />}
         </div>
         <div className="calendar">
+          <div className="name-tab d-flex align-items-center">
+            <div className="--icon">
+              <img src={date.default} alt="" />
+            </div>
+            <h6 className="fs-18 --name fw-bold mb-0">Chọn thời gian</h6>
+          </div>
           <BookingDate
             startDate={startDate}
             setStartDate={date => {
@@ -60,8 +64,6 @@ const EventList = (props: EventListProps) => {
               const output = moment(date).format('YYYY-MM-DD');
 
               dispatch(bookingActions.setSearch({ date: output }));
-
-              dispatch(bookingActions.cartClear());
             }}
           />
         </div>

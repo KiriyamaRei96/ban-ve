@@ -10,6 +10,7 @@ export const selectNotifications = createSelector(
   [notification],
   state => state,
 );
+export const appLoading = createSelector([globalState], state => state.loading);
 export const isLogged = createSelector([globalState], state => state.isLogged);
 export const userInfo = createSelector([globalState], state => state.userInfo);
 export const currentPark = createSelector(

@@ -31,7 +31,7 @@ export interface ResponseType {
     date: string;
     datetime: string;
   };
-  orderState: string;
+  orderState: { name: string; value: string };
   payment: PaymentMethod;
   // seats: [Seats] | [];
   items: any[];

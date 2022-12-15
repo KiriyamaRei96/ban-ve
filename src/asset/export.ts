@@ -37,3 +37,4 @@ export const qr = require('./qr.png');
 export const store = require('./store 01.png');
 export const vector = require('./Vector.png');
 export const changePass = require('./changePass.png');
+export const Pending = require('./Pending.png');

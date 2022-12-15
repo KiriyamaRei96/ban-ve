@@ -25,10 +25,10 @@ const Profile = (props: ProfileProps) => {
         <div className="--top d-flex justify-content-between align-items-center mb-3">
           <h5 className="fw-bold">Profile</h5>
           <div className="btn-wrapper d-flex">
-            <button>
+            {/* <button>
               <img src={edit.default} alt="" />
               <span>Edit</span>
-            </button>
+            </button> */}
             <button onClick={() => setOpen(true)}>
               <img src={changePass} alt="" />
               <span>Thay đổi mật khẩu</span>
@@ -43,25 +43,29 @@ const Profile = (props: ProfileProps) => {
                 <div className="form-group d-flex flex-column">
                   <label htmlFor="">Name</label>
                   <Form.Item name="name">
-                    <input type="text" placeholder="Nguyễn văn A" />
+                    <input
+                      readOnly={true}
+                      type="text"
+                      placeholder="Nguyễn văn A"
+                    />
                   </Form.Item>
                 </div>
                 <div className="form-group d-flex flex-column">
                   <label htmlFor="">Phone</label>
                   <Form.Item name="phone">
-                    <input type="text" />
+                    <input readOnly={true} type="text" />
                   </Form.Item>
                 </div>
                 <div className="form-group d-flex flex-column">
                   <label htmlFor="">Email</label>
                   <Form.Item name="email">
-                    <input type="text" />
+                    <input readOnly={true} type="text" />
                   </Form.Item>
                 </div>
                 <div className="form-group d-flex flex-column w-100">
                   <label htmlFor="">Address</label>
                   <Form.Item name="address">
-                    <input type="text" />
+                    <input readOnly={true} type="text" />
                   </Form.Item>
                 </div>
               </div>

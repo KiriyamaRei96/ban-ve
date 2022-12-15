@@ -39,7 +39,7 @@ export function CheckOut(props: CheckOutProps) {
   };
   useEffect(() => {
     if (redirect) {
-      navigate('/PaymentCallback?object');
+      navigate('/PaymentCallback?Thanh-toan');
     }
   }, [redirect]);
   return (
